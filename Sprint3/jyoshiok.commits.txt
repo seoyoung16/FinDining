@@ -1,0 +1,407 @@
+FinDining/frontend/components/CampusMap/index.tsx
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400   8) import FiltersElements from "../FiltersElements"
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400   9) import { json } from "stream/consumers";
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  11) import { faFilter, faLaptopHouse } from '@fortawesome/free-solid-svg-icons';
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  14) interface Props {
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  15)   openPopup: (locationId: number) => void;
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  17) }
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  18) 
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  19) interface MapButtonProps {
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  20)   openTime: number;
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  21)   closeTime: number;
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  22)   top: number;
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  23)   left: number;
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  24)   imgUrl: string;
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  25)   openPopup: (locationId: number) => void;
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  26) }
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  27) 
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  28) const filters = {
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  29)   dietaryRestrictions: {
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  30)     vegan: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  31)     lactose: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  32)     gluten: false
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  33)   },
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  34)   meal: {
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  35)     breakfast: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  36)     lunch: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  37)     dinner: false
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  38)   },
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  39)   methodOfPayment: {
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  40)     mealSwipe: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  41)     diningDollars: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  42)     flex: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  43)     volCard: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  44)     debitCredit: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  45)     cash: false
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  46)   },
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  47)   location: {
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  48)     central: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  49)     north: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  50)     west: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  51)     south: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  52)     east: false
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  53)   },
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  54)   hours: {
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  55)     openingSoon: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  56)     currentlyOpen: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  57)     closingSoon: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  58)     currentlyClosed: false
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  59)   },
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  60)   price: {
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  61)     one: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  62)     two: false,
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  63)     three: false
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  64)   }
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  65) }
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  66) 
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  67) const CampusMap: React.FC<Props> = (props) => {
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  70)   const [filtersVisibility, setFiltersVisibility] = useState(0);
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  74)   const testMapBtn: MapButtonProps = {
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  75)     openTime: 450,
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  76)     closeTime: 1170,
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  77)     top: 1200,
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  78)     left: 4100,
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  79)     imgUrl: "steak.png",
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  80)     openPopup: props.openPopup
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400  81)   }
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  83)   const setFilterAttr = (filterType: string, values: Record<string, boolean>) => {
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  84)     /* Set filters here, key on filterType, then filter entry by iterating through values record and keying on individual entries */
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  85)     filters[filterType] = values;
+5c31b025 (Jovan Yoshioka 2022-11-07 14:41:01 -0500  86)     console.log(filters);
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  87)   }
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  88) 
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  93)           <div onClick = {() => {something(-450)}} className = {`${styles.ListButton} ${styles.ListButtonNoAbs}`}></div>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  94)           <div className={styles.scrollable}>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  95)           <div id="myBtnContainer">
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  96)             <div onClick={() => { setFiltersVisibility((prevState) => (prevState ? 0 : 1)) }} className = {styles.emoji}><FontAwesomeIcon icon={faFilter} /></div>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  97)           </div>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  99)           {!filtersVisibility ? (
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 100)             <>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 101)             <a href="#">ㅤㅤㅤㅤ</a>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 102)             <div>    <a onClick={() => { props.openPopup(0) }}>ㅤㅤDining Place 1</a> </div>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 103)             <div>    <a onClick={() => { props.openPopup(0) }}>ㅤㅤDining Place 2</a> </div>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 104)             <div>    <a onClick={() => { props.openPopup(0) }}>ㅤㅤDining Place 3</a> </div>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 105)             </>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 106)           ) : (
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500 107)             <FiltersElements update={setFilterAttr} />
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 108)           )}
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 109)           </div>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 113)       <div>
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 114)         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter" />
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 115)       </div>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 121)       {({ zoomIn, zoomOut, centerView, ...rest }) => (
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 128)             <MapButton {...testMapBtn} />
+
+FinDining/frontend/components/CampusMap/campusmap.module.scss
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400  85) .ListButtonNoAbs {
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400  86)     position: static !important;
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400  87) }
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 102)   // top: 150px;
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 103)   top: 0;
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 111)   // padding-top: 100px; /* Place content 60px from the top */
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 134) 
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 135) .scrollable {
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 136)   height: calc(100% - 70px);
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 137)   width: 100%;
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 138)   overflow-y: auto;
+23b9c150 (jovanyoshioka 2022-11-03 22:18:51 -0400 139) }
+
+FinDining/frontend/components/FiltersElements/index.tsx
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500   4) interface Props {
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500   5)   update: (filterType: string, values: Record<string, boolean>) => void // Record<string, boolean>
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500   6) }
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500   7) 
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500   8) const FiltersElements: React.FC<Props> = ({update}) => {
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  18)   const prepUpdate = (e, name) => {
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  19)     let options: HTMLOptionsCollection = e.target.options;
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  20)     let filters: Record<string, boolean> = {};
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  21) 
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  22)     for (let i = 0; i < options.length; i++) {
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  23)       if (options[i].value !== "noFilter")
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  24)         filters[options[i].value] = options[i].selected;
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  25)     }
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  26) 
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  27)     update(name, filters);
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  28)   }
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  29) 
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  31)     <div className={styles.container}>
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  34)         <select multiple={true} onChange={(e) => prepUpdate(e, "dietaryRestrictions")}>
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  35)           <option value="vegan">Vegan/Vegetarian</option>
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  36)           <option value="lactose">Lactose-Free</option>
+920d1bf1 (jovanyoshioka  2022-11-06 13:12:51 -0500  37)           <option value="gluten">Gluten-Free</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  45)         <select onChange={(e) => prepUpdate(e, "meal")}>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  46)           <option value="noFilter">No Filter</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  57)         <select multiple={true} onChange={(e) => prepUpdate(e, "methodOfPayment")}>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  58)           <option value="mealSwipe">Meal Swipe</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  59)           <option value="diningDollars">Dining Dollars</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  60)           <option value="flex">Flex</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  61)           <option value="volCard">VolCard</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  62)           <option value="debitCredit">Debit/Credit</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  63)           <option value="cash">Cash</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  71)         <select multiple={true} onChange={(e) => prepUpdate(e, "location")}>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  84)         <select multiple={true} onChange={(e) => prepUpdate(e, "hours")}>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  85)           <option value="openingSoon">Opening Soon</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  86)           <option value="currentlyOpen">Currently Open</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  87)           <option value="closingSoon">Closing Soon</option>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  88)           <option value="currentlyClosed">Currently Closed</option> 
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500  96)         <select multiple={true} onChange={(e) => prepUpdate(e, "price")}>
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 102)     </div>
+
+FinDining/frontend/components/FiltersElements/filterselements.module.scss
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  1) .container {
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  2) //   background-color: red;
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  3)   width: 75%;
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  4)   margin: 0 auto;
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  5)   padding-bottom: 25px;
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400  6) }
+23b9c150 (jovanyoshioka  2022-11-03 22:18:51 -0400 13)         width: 100%;
+
+FinDining/frontend/components/Popup/index.tsx
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400   4) import {faUtensils, faX, faLocationDot, faClock, faStar } from '@fortawesome/free-solid-svg-icons'
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500   8) import { useCallback, useEffect, useState } from "react";
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  13) 
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  14) interface Props {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  15)   name: string;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  16)   isVisible: boolean;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  17)   closePopup: () => void;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  18) }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  19) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  28) interface DisplayHours {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  29)   days: string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  30)   hours: string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  31) }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  32) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  33) interface Hours {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  34)   open: string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  35)   close: string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  36) }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  37) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  38) interface WeeklyHours {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  39)   Monday: Hours | string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  40)   Tuesday: Hours | string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  41)   Wednesday: Hours | string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  42)   Thursday: Hours | string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  43)   Friday: Hours | string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  44)   Saturday: Hours | string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  45)   Sunday: Hours | string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  46) }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  47) 
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  48) interface Address {
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  49)   lineOne: string;
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  50)   lineTwo: string;
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  51) }
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  52) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  63)   const [hoursToDisplay, setHoursToDisplay] = useState([]);
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  64)   const empty: Address = { lineOne: "", lineTwo: "" };
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  65)   const [addressToDisplay, setAddressToDisplay] = useState(empty);
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  66)   const [imgUrl, setImgUrl] = useState(``);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  67) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  68)   const convertToStdTime = (military: string): string => {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  69)     let hour, min;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  70)     if (military.length == 3) { // ex: 700
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  71)       hour = parseInt(military[0]);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  72)       min = parseInt(military.substring(1, 3), 10);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  73)     } else if (military.length == 4) { // ex: 1400
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  74)       hour = parseInt(military.substring(0, 2));
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  75)       min = parseInt(military.substring(2, 4), 10);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  76)     }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  77) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  78)     let isAM = true;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  79)     if (hour >= 12 && hour < 24) isAM = false;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  80)     if (hour > 12) hour -= 12;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  81) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  82)     return hour + ":" + (min <= 9 ? "0" : "") + min + (isAM ? "AM" : "PM");
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  83)   }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  84) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  85)   const formatTime = (raw: string) => {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  86)     const times: string[] = raw.split(",");
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  87)     const open: string = convertToStdTime(times[0]);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  88)     const close: string = convertToStdTime(times[1]);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  89)     return open + " - " + close;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  90)   }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  91) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  92)   const coalesce = (hours: Hours | string, value: string, coalesced: Record<string, string[]>) => {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  93)     if (typeof(hours) === "string") {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  94)       if (!("CLOSED" in coalesced)) coalesced["CLOSED"] = [];
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  95)       coalesced["CLOSED"].push(value);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  96)     } else {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  97)       if (!(hours.open + "," + hours.close in coalesced)) coalesced[hours.open + "," + hours.close] = [];
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  98)       coalesced[hours.open + "," + hours.close].push(value);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500  99)     }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 100)     return coalesced;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 101)   }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 102) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 103)   const coalesceAll = (hours: WeeklyHours) => {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 104)     let coalesced: Record<string, string[]> = {};
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 105)     coalesced = coalesce(hours.Monday, "MON", coalesced);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 106)     coalesced = coalesce(hours.Tuesday, "TUE", coalesced);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 107)     coalesced = coalesce(hours.Wednesday, "WED", coalesced);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 108)     coalesced = coalesce(hours.Thursday, "THU", coalesced);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 109)     coalesced = coalesce(hours.Friday, "FRI", coalesced);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 110)     coalesced = coalesce(hours.Saturday, "SAT", coalesced);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 111)     coalesced = coalesce(hours.Sunday, "SUN", coalesced);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 112) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 113)     let preHoursToDisplay: Array<DisplayHours> = [];
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 114)     let coalescedStr, timeStr: string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 115)     let prev: string;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 116)     let isDash: boolean;
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 117)     let isSame: boolean;
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 118)     for (const key in coalesced) {
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 119)       for (let i = 0; i < coalesced[key].length; i++) {
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 120)         if (i == 0) {
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 121)           coalescedStr = coalesced[key][i];
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 122)           prev = coalesced[key][i];
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 123)           isSame = true;
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 124)         } else {
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 125)           if (
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 126)             (coalesced[key][i] === "TUE" && prev === "MON")
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 127)             || (coalesced[key][i] === "WED" && prev === "TUE")
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 128)             || (coalesced[key][i] === "THU" && prev === "WED")
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 129)             || (coalesced[key][i] === "FRI" && prev === "THU")
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 130)             || (coalesced[key][i] === "SAT" && prev === "FRI")
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 131)             || (coalesced[key][i] === "SUN" && prev === "SAT")
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 132)           ) {
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 133)             // Is consecutive, so should use dash.
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 134)             isDash = true;
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 135)             prev = coalesced[key][i];
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 136)             isSame = false;
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 137)           } else {
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500 138)             // Not consecutive, so should use comma.
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 139)             if (isDash && !isSame) coalescedStr += "-" + prev;
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 140)             isDash = false;
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 141)             coalescedStr += ", " + coalesced[key][i];
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 142)             prev = coalesced[key][i];
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 143)             isSame = true;
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 144)           }
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 145)         }
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 146)       }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 147) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 148)       timeStr = (key === "CLOSED") ? "CLOSED" : formatTime(key);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 149)       preHoursToDisplay.push({ days: coalescedStr, hours: timeStr });
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 150)     }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 151) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 152)     setHoursToDisplay(preHoursToDisplay);
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 153)   }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 167)   
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 168)   const hours: WeeklyHours = {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 169)     Monday: { open: "700", close: "2400" },
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 170)     Tuesday: { open: "600", close: "2400" },
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 171)     Wednesday: { open: "700", close: "2400" },
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 172)     Thursday: "CLOSED",
+0bc72ee2 (Jovan Yoshioka 2022-11-06 17:23:44 -0500 173)     Friday: "CLOSED",
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 174)     Saturday: { open: "1100", close: "1400" },
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 175)     Sunday: "CLOSED"
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 176)   }
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 177) 
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 178)   useEffect(() => {
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 179)     coalesceAll(hours);
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500 180)     setAddressToDisplay({ lineOne: "1502 Cumberland Ave", lineTwo: "Knoxville, TN 37916" });
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500 181)     setImgUrl("chick.png");
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 182)   }, []);
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 186)     <>
+be2f2cea (Jovan Yoshioka 2022-11-06 14:02:01 -0500 187)       <div onClick={() => {props.closePopup(); setBoard(0);}} className = {`${styles.bb} ${props.isVisible ? styles.showBB : ''}`} ></div>
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 188)       <div className = {`${styles.back} ${props.isVisible ? styles.showBack : ''}`}>
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 192)           {/* <a href="http://localhost:3000/map" className={styles.wrap}><FontAwesomeIcon icon={faLocationDot} /></a> */}
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500 196)         <div style={{backgroundImage: `url(${imgUrl})`}} className = {styles.img}></div>
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 207)             {hoursToDisplay.map(item=>(
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 208)               <div className = {styles.simp}>{item.days} <span className = {styles.time}>{item.hours}</span></div>
+74281626 (Jovan Yoshioka 2022-11-06 17:09:46 -0500 209)             ))}
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500 212)           <div className = {styles.address}> {addressToDisplay.lineOne}</div>
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500 213)           <div className = {styles.address}> {addressToDisplay.lineTwo}</div>
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 260)     </>
+
+FinDining/frontend/components/Popup/Popup.module.scss
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400   2)     from {transform: translateY(-100px); opacity: 0.0}
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400   3)     to {transform: translateY(0); opacity: 1.0}
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400   4) }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400   5) @keyframes fadeIn {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400   6)     from {opacity: 0.0}
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400   7)     to {opacity: 0.3}
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  11)     background-color: rgba(0, 0, 0);
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  13)     height: 100%;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  14)     animation-name: fadeIn;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  15)     animation-duration: 0.5s;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  16)     position: absolute;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  17)     top: 0;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  18)     left: 0;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  19)     display: none;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  20)     opacity: 0.0;
+b5263cb0 (jovanyoshioka  2022-11-03 21:29:56 -0400  21)     z-index: 7;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  22) }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  23) .showBB {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  24)   display: block;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  25)   opacity: 0.3;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  36)     animation-duration: 0.5s;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  37)     position: absolute;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  38)     top: 50px;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  39)     left: 0;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  40)     right: 0;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  41)     margin: 0 auto;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  42)     display: none;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  43)     opacity: 0.0;
+b5263cb0 (jovanyoshioka  2022-11-03 21:29:56 -0400  44)     z-index: 8;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  45) }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  46) .showBack {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  47)     display: block !important;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  48)     opacity: 1.0;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  60) .wrapRight {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  61)     float: right;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  62) }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  63) 
+3acd9866 (Jovan Yoshioka 2022-11-06 17:47:09 -0500  75)     // background: url(CFA_Logo.png);
+
+FinDining/frontend/components/mapButton/index.tsx
+4130fca7 (jovanyoshioka 2022-11-03 20:21:37 -0400  6)   closeTime: number;
+4130fca7 (jovanyoshioka 2022-11-03 20:21:37 -0400  9)   imgUrl: string;
+4130fca7 (jovanyoshioka 2022-11-03 20:21:37 -0400 10)   openPopup: (locationId: number) => void;
+4130fca7 (jovanyoshioka 2022-11-03 20:21:37 -0400 57)   let seconds = h*60+m;
+4130fca7 (jovanyoshioka 2022-11-03 20:21:37 -0400 64)       <button 
+4130fca7 (jovanyoshioka 2022-11-03 20:21:37 -0400 65)       onClick = {() => {props.openPopup(0)}} /* TODO: Replace 0 with location ID. */
+4130fca7 (jovanyoshioka 2022-11-03 20:21:37 -0400 73)       className = {(seconds <= props.closeTime && seconds >=  props.openTime) ? styles.button : styles.buttonNO} type="submit"
+
+FinDining/frontend/pages/map/index.tsx
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  2) import { useState } from "react";
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  5) import MapButton from "../../components/mapButton";
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  6) import Popup from "../../components/Popup";
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  7) 
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  8) interface PopupProps {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400  9)   name: string;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 10)   isVisible: boolean;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 11)   closePopup: () => void;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 12) }
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 14) interface CampusMapProps {
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 15)   openPopup: (locationId: number) => void;
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 22) }
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 23) 
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 25) 
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 26)   const test = { position: 'absolute', top: 0, left: 0 }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 27) 
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 28)   /* Temporary Data Fetcher */
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 29)   const getLocationData = (locationId: number) => {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 30)     return {name: 'Steak n Shake'};
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 31)   }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 32) 
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 33)   const showPopup = (locationId: number) => {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 34)     const data: PopupProps = { ...getLocationData(locationId), isVisible: true, closePopup: hidePopup};
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 35)     setPopupProps(data);
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 36)   };
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 37) 
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 38)   const hidePopup = () => {
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 39)     const data: PopupProps = popupProps;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 40)     data.isVisible = false;
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 41)     setPopupProps(data);
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 42)   }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 43) 
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 54)   const [popupProps, setPopupProps] = useState({name: '', isVisible: false, closePopup: hidePopup});
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 55) 
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 56)   const campusMapProps: CampusMapProps = {
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 59)   }
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 60)   
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 67)     <>
+4130fca7 (jovanyoshioka  2022-11-03 20:21:37 -0400 68)       <CampusMap {...campusMapProps} />
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 69)       <Popup {...popupProps} />
+ffcf49ae (jovanyoshioka  2022-11-03 17:34:11 -0400 71)     </>
+
+FinDining/frontend/pages/popup/index.tsx
+ffcf49ae (jovanyoshioka 2022-11-03 17:34:11 -0400  5)   const popupProps = {name: 'Chick fil a', isVisible: true, closePopup: () => {}};
+ffcf49ae (jovanyoshioka 2022-11-03 17:34:11 -0400 11)       <Popup {...popupProps} />

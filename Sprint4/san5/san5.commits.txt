@@ -1,0 +1,307 @@
+./frontend/components/Popup/module.scss
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 124) }
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 140)
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 141) .votes{
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 142)     background: url(VOTE.png);
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 143)     cursor: pointer;
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 144)     background-size: contain;
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 145)     width: 100px;
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 146)     height: 50px;
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 147)     font-size: 2em;
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 148)     text-align: right;
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 149)     font-weight: bold;
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 150)     background-position: right;
+e8b98b90 (seoyoung16     2022-11-17 17:22:58 -0500 151)     margin: 0px auto 25px 290px;
+78f62e76 (seoyoung16     2022-11-29 17:13:53 -0500 152) }
+
+./frontend/components/CampusMap/index.tsx
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500  20)   OpenRate: (locationId: number) => void;
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 128)   const [left, something] = useState(-770);
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 248)       let name: string = "";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 249)       if (key == "0") name = "Fresh Food Company @ Stokely";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 250)       else if (key == "1") name = "Dining Hall @ Rocky Top";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 251)       else if (key == "2") name = "Southern Kitchen @ Volunteer Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 252)       else if (key == "3") name = "Vol Bakery @ Rocky Top";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 253)       else if (key == "4") name = "Arena Dining Cafe @ Thompson-Boling";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 254)       else if (key == "5") name = "Mabel's @ McCord Hall"
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 255)       else if (key == "6") name =  "Subway @ Fred Brown Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 256)       else if (key == "7") name =  "Subway @ Student Union";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 257)       else if (key == "8") name =  "Qdoba @ Student Union";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 258)       else if (key == "9") name =  "Rising Roll @ Student Union";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 259)       else if (key == "10") name =  "Steak n Shake @ Student Union";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 260)       else if (key == "11") name =  "Chick-fil-A @ Rocky Top";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 261)       else if (key == "12") name =  "Chick-fil-A @ Student Union";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 262)       else if (key == "13") name =  "Panda Express @ Cumberland";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 263)       else if (key == "14") name =  "Panda Express @ Student Union";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 264)       else if (key == "15") name =  "Twisted Taco @ Brown Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 265)       else if (key == "16") name =  "Raising Canes @ Cumberland";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 266)       else if (key == "17") name =  "Dunkin Donuts @ Volunteer Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 267)       else if (key == "18") name =  "Bento Sushi @ Thompson-Boling";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 268)       else if (key == "19") name =  "Blenz Smoothie Bowls @ Student Union";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 269)       else if (key == "20") name =  "Einstein Bros Bagels @ Art & Architecture";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 270)       else if (key == "21") name =  "Einstein Bros Bagels @ Haslam";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 271)       else if (key == "22") name =  "Einstein Bros Bagels @ Mossman";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 272)       else if (key == "23") name =  "Starbucks @ Hodges Library";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 273)       else if (key == "24") name =  "Starbucks @ Student Union";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 274)       else if (key == "25") name =  "Blenz @ TRECS";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 275)       else if (key == "26") name =  "Dippers @ Hess Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 276)       else if (key == "27") name =  "Which Wich @ Thompson-Boling";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 277)       else if (key == "28") name =  "Side Bar Cafe @ Law School";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 278)       else if (key == "29") name =  "P.O.D @ Rocky Top";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 279)       else if (key == "30") name =  "P.O.D @ Stokely";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 280)       else if (key == "31") name =  "P.O.D @ Hodges Libary";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 281)       else if (key == "32") name =  "P.O.D @ Hess Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 282)       else if (key == "33") name =  "P.O.D @ Humanities";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 283)       else if (key == "34") name =  "P.O.D @ Laurel Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 284)       else if (key == "35") name =  "P.O.D @ Volunteer Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 285)       else if (key == "36") name =  "P.O.D @ Clement Hall";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 286)       else if (key == "37") name =  "P.O.D @ Ag Campus";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 287)       else if (key == "38") name =  "P.O.D @ Zeanah Engineering";
+01706335 (seoyoung16     2022-11-28 18:30:26 -0500 290)       locations.push([key, name]); //props.data[key]["name"]]);
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 300)     for (const key in props.data) {
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 302)       let name: string = "";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 303)       if (key == "0") name = "Fresh Food Company @ Stokely";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 304)       else if (key == "1") name = "Dining Hall @ Rocky Top";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 305)       else if (key == "2") name = "Southern Kitchen @ Volunteer Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 306)       else if (key == "3") name = "Vol Bakery @ Rocky Top";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 307)       else if (key == "4") name = "Arena Dining Cafe @ Thompson-Boling";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 308)       else if (key == "5") name = "Mabel's @ McCord Hall"
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 309)       else if (key == "6") name =  "Subway @ Fred Brown Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 310)       else if (key == "7") name =  "Subway @ Student Union";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 311)       else if (key == "8") name =  "Qdoba @ Student Union";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 312)       else if (key == "9") name =  "Rising Roll @ Student Union";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 313)       else if (key == "10") name =  "Steak n Shake @ Student Union";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 314)       else if (key == "11") name =  "Chick-fil-A @ Rocky Top";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 315)       else if (key == "12") name =  "Chick-fil-A @ Student Union";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 316)       else if (key == "13") name =  "Panda Express @ Cumberland";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 317)       else if (key == "14") name =  "Panda Express @ Student Union";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 318)       else if (key == "15") name =  "Twisted Taco @ Brown Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 319)       else if (key == "16") name =  "Raising Canes @ Cumberland";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 320)       else if (key == "17") name =  "Dunkin Donuts @ Volunteer Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 321)       else if (key == "18") name =  "Bento Sushi @ Thompson-Boling";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 322)       else if (key == "19") name =  "Blenz Smoothie Bowls @ Student Union";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 323)       else if (key == "20") name =  "Einstein Bros Bagels @ Art & Architecture";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 324)       else if (key == "21") name =  "Einstein Bros Bagels @ Haslam";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 325)       else if (key == "22") name =  "Einstein Bros Bagels @ Mossman";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 326)       else if (key == "23") name =  "Starbucks @ Hodges Library";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 327)       else if (key == "24") name =  "Starbucks @ Student Union";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 328)       else if (key == "25") name =  "Blenz @ TRECS";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 329)       else if (key == "26") name =  "Dippers @ Hess Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 330)       else if (key == "27") name =  "Which Wich @ Thompson-Boling";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 331)       else if (key == "28") name =  "Side Bar Cafe @ Law School";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 332)       else if (key == "29") name =  "P.O.D @ Rocky Top";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 333)       else if (key == "30") name =  "P.O.D @ Stokely";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 334)       else if (key == "31") name =  "P.O.D @ Hodges Libary";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 335)       else if (key == "32") name =  "P.O.D @ Hess Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 336)       else if (key == "33") name =  "P.O.D @ Humanities";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 337)       else if (key == "34") name =  "P.O.D @ Laurel Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 338)       else if (key == "35") name =  "P.O.D @ Volunteer Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 339)       else if (key == "36") name =  "P.O.D @ Clement Hall";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 340)       else if (key == "37") name =  "P.O.D @ Ag Campus";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 341)       else if (key == "38") name =  "P.O.D @ Zeanah Engineering";
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 342)       locations.push([key, name]);
+27198234 (seoyoung16     2022-11-28 18:48:14 -0500 351)           <div onClick = {() => {something(-720)}} className = {`${styles.ListButton} ${styles.ListButtonNoAbs}`}></div>
+
+./frontend/components/Rate/index.tsx
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500  1) import styles from "./rate.module.scss"
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500  2) import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500  3) import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500  4) import ReactStars from "react-rating-stars-component";
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500  5) import {cookies, useCookies, CookiesProvider } from 'react-cookie';
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500  7) import { updateAverageRate } from "../../server/actions/AverageRate";
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500  8)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500  9) interface Props {
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 10)     isVisible: boolean;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 11)     CloseRate: () => void;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 12)     locationId: number;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 13) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 14)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 15) const Rate: React.FC<Props> = (props) =>{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 16)       const [cookies, setCookie] = useCookies(['rating']);
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 17)   const [rating, setRating] = useState(0);
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 18)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 19)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 20)     function onChange(newName) {
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 26)     setCookie('rating', newName, { path: '/' }, {expires: 100});
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 27)   }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 33)     return(
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 34)         /* bb is for putting background map so that popup would be more like popup*/
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 35)         <>
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 38)             <h1> Rating </h1>
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 54)       </>
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 55)     )
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 56) };
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 57)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 58) export default Rate;
+
+./frontend/components/Rate/rate.module.scss
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 130)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 131) .image{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 132)     width: 20%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 133)     height: 20%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 134)     display: inline-block;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 135) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 136)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 137) .imageButton{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 138)     width: 16%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 139)     height: 16%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 140)     display: inline-block;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 141) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 142)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 143) .leftMenu{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 144)     padding-top: 5px;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 145)     width: 40%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 146)     display: inline-block;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 147)     font-weight: bold;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 148) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 149)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 150) .imageMenu{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 151)     width: 70%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 152)     height: 70%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 153)     display: inline-block;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 154) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 155)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 156) .middle{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 157)     width: 60%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 158)     vertical-align: baseline;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 159)     display: inline-block;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 160) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 161)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 162) .middleMenu{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 163)     width: 60%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 164)     display: inline-block;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 165) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 166)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 167)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 168) .right{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 169)     padding-top: 5px;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 170)     width: 30%;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 171)     display: inline-block;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 172) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 173)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 174) /*Vertical Lines*/
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 175) .divider{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 176)     border-top: 1px solid #bbb;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 177) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 178)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 179) .dot{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 180)     border-top: 3px dotted black;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 181) }
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 182)
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 183) .solid{
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 184)     border-top: 2px solid black;
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 185) }
+
+./frontend/server/actions/AverageRate.ts
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  1)
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  2) export const getAverageRate = async function (id: number): Promise<string | void> {
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  3)   const data = {
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  4)     'id': id//0
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  5)   };
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  6)
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  7)   return fetch('http://localhost:8000/api/getting-average', {
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  8)     // mode: 'no-cors',
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500  9)     method: 'POST',
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 10)     headers: {
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 11)       'Accept': 'application/json',
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 12)       'Content-Type': 'application/json'
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 13)     },
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 14)     // credentials: 'same-origin',
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 15)     body: JSON.stringify(data)
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 16)   })
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 17)     .then((response) => response.json())
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 18)     .then(data => {
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 19)         return data.msg3;
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 20)     })
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 21)     .catch((err) => {
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 22)         console.log("ERROR: " + err);
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 23)     })
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 24) };
+8dd3f7b3 (seoyoung16 2022-11-29 23:21:16 -0500 25)
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 26)
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 27) export const updateAverageRate = async function (id: number, newRating: number, preRating: number, isFirstRating: boolean): Promise<string | void> {
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 28)   const data = {
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 29)     'id': id,
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 30)     'newRating': newRating,
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 31)     'preRating': preRating,
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 32)     'isFirstRating': isFirstRating
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 33)   };
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 34)
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 35)   return fetch('http://localhost:8000/api/updating-rate', {
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 36)     // mode: 'no-cors',
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 37)     method: 'POST',
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 38)     headers: {
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 39)       'Accept': 'application/json',
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 40)       'Content-Type': 'application/json'
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 41)     },
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 42)     // credentials: 'same-origin',
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 43)     body: JSON.stringify(data)
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 44)   })
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 45)     .then((response) => response.json())
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 46)     .then(data => {
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 47)         return data.msg2;
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 48)     })
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 49)     .catch((err) => {
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 50)         console.log("ERROR: " + err);
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 51)     })
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 52) };
+c87eb90b (seoyoung16 2022-11-30 01:31:22 -0500 53)
+
+./frontend/pages/map/index.tsx
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500   5) import Rate from "../../components/Rate";
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500  86)   OpenRate: (locationId: number) => void;
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500  94)   OpenRate: (locationId: number) => void;
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 107) interface RateProps {
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 108)   isVisible: boolean;
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 109)   CloseRate: () => void;
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 110)   locationId: number;
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 111) }
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 112)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 123)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 124)    const showRate = (locationId: number) => {
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 125)     const data: RateProps = { isVisible: true, CloseRate: hideRate, locationId: locationId};
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 126)     setRateProps(data);
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 127)   };
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 128)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 129)   const hideRate = () => {
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 130)     const data: RateProps = rateProps;
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 131)     data.isVisible = false;
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 132)     setRateProps(data);
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 133)   }
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 134)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 136)     const data: PopupProps = { locationId: locationId, isVisible: true, closePopup: hidePopup, data: loc_map, OpenRate: showRate};
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 145)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 166)   const [popupProps, setPopupProps] = useState({locationId: 0, isVisible: false, closePopup: hidePopup, data: loc_map, OpenRate: showRate}
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 167)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 168)   );
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 169)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 170)   const [rateProps, setRateProps] = useState({isVisible: false, CloseRate: hideRate, locationId: 0});
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 171)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 172)
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 177)     OpenStrip: showStrip,
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 178)     OpenRate: showRate
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 197)       <Rate {...rateProps} />
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 202) export default map;
+
+./frontend/pages/popup/index.tsx
+c87eb90b (seoyoung16    2022-11-30 01:31:22 -0500 16) export default Pop;
+
+./frontend/components/Popup/index.tsx
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500  14) import { getAverageRate } from "../../server/actions/AverageRate";
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500  21)   OpenRate: (locationId: number) => void;
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500  73)   const [avgRate, setAvgRate] = useState("-1");
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500  93) 
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500  94) 
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500 205)     
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500 206)     setAvgRate("-1");
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500 207)     getAverageRate(props.locationId)
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500 208)       .then((response) => { setAvgRate(response ? response : "-1") })
+78f62e76 (seoyoung16     2022-11-29 17:13:53 -0500 251) 
+78f62e76 (seoyoung16     2022-11-29 17:13:53 -0500 254) 	  <div className = {styles.star}>
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500 255) 	    {avgRate !== "-1" ? (
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500 264) 	    ) : (
+a8931d53 (seoyoung16     2022-11-29 23:14:11 -0500 266) 	    )}
+c87eb90b (seoyoung16     2022-11-30 01:31:22 -0500 274)           <div onClick = {() => {props.OpenRate(props.locationId)}} className = {`${styles.ListButton} ${styles.votes}`}></div>
+78f62e76 (seoyoung16     2022-11-29 17:13:53 -0500 275)           
+78f62e76 (seoyoung16     2022-11-29 17:13:53 -0500 276) 	  <div className = {styles.address}> {addressToDisplay.lineOne}</div>
+54d52050 (seoyoung16     2022-11-29 08:47:12 -0500 341) export default Pop;

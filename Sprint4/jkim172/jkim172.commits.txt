@@ -1,0 +1,263 @@
+.\frontend\components\Popup\index.tsx
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500  22) interface MenuItem{
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500  23)   Category: boolean;
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500  24)   Menu: string;
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500  25)   Price: string;
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500  26) }
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500  27) 
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500  69) 
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500  77)   const [list, setList] = useState([]);
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 173)     // {Menu: (((props.data[props.locationId].menu).length>i) ? props.data[props.locationId].menu[i].category : ""), priceone: "", pricetwo: "", pricethree: (((props.data[props.locationId].menu).length>i) ? "Price" : "")}
+3d5a88d2 (jkim172vols    2022-11-29 20:07:08 -0500 176)   const menus: Food = [
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 177)     // {Menu: (((props.data[props.locationId].menu).length>i) ? props.data[props.locationId].menu[i].name : ""), priceone: "", pricetwo: (((props.data[props.locationId].menu).length>i) ? "" : "We don't support"), pricethree: (((props.data[props.locationId].menu).length>i) ? props.data[props.locationId].menu[i].price : "menu for this store")}
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 206)     
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 207)     var dup: Array<string> = []
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 208)     var dup2: Array<MenuItem> = [];
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 209)     for(const key in props.data[props.locationId].menu){
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 210)       if(dup[dup.length-1]!=props.data[props.locationId].menu[key].category){
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 211)         const DupProps: MenuItem = {
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 212)           Category: true,
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 213)           Menu: props.data[props.locationId].menu[key].category,
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 214)           Price: ""
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 215)         }
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 216)         dup2.push(DupProps);
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 217)         dup.push(props.data[props.locationId].menu[key].category);
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 218)       }
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 219)       const MenuProps: MenuItem = {
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 220)         Category: false,
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 221)         Menu: props.data[props.locationId].menu[key].name,
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 222)         Price: props.data[props.locationId].menu[key].price
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 223)       }
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 224)       dup2.push(MenuProps);
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 225)     }
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 226)     setList(dup2);
+a7b5517d (jkim172vols    2022-11-28 17:50:19 -0500 229)   useEffect(() => {
+a7b5517d (jkim172vols    2022-11-28 17:50:19 -0500 230)     menus = [
+3d5a88d2 (jkim172vols    2022-11-29 20:07:08 -0500 231)       // {Menu: "ChickenBurger", priceone: "", pricetwo: (toggle ? "$ 12.34" : "$9.34"), pricethree: "$ 56.78"},
+3d5a88d2 (jkim172vols    2022-11-29 20:07:08 -0500 232)       // {Menu: "SpicyBurger", priceone: "", pricetwo: "$ 56.78", pricethree: "$ 90.12"},
+3d5a88d2 (jkim172vols    2022-11-29 20:07:08 -0500 233)       // {Menu: "SpicyBurger", priceone: "", pricetwo: "$ 56.78", pricethree: "$ 90.12"}
+a7b5517d (jkim172vols    2022-11-28 17:50:19 -0500 234)     ]
+a7b5517d (jkim172vols    2022-11-28 17:50:19 -0500 235)   }, [toggle]);
+a7b5517d (jkim172vols    2022-11-28 17:50:19 -0500 236) 
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 240)       <div onClick={() => {props.closePopup(); setBoard(0); setToggle(0)}} className = {`${styles.bb} ${props.isVisible ? styles.showBB : ''}`} ></div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 247)           <a onClick={() => {props.closePopup(); setBoard(0); setToggle(0)}} className={`${styles.wrap} ${styles.wrapRight}`}><FontAwesomeIcon icon={faX}></FontAwesomeIcon></a>
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 259)         <div className = {styles.splitleft}>
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 264)         <div className = {styles.splitright}>
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 265)           <div className = {styles.address}> {addressToDisplay.lineOne}</div>
+d161b0db (jkim172vols    2022-11-28 14:06:43 -0500 275)                     <div className = {styles2.splitleft}>
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 276)                       <a onClick={() => { setBoard((prevState) => (prevState ? 0 : 1)) }} className = {styles2.emoji}><FontAwesomeIcon icon={faHouse} /></a>
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 277)                     </div>
+d161b0db (jkim172vols    2022-11-28 14:06:43 -0500 278)                     <div className = {styles2.splitright}>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 279)                       <div className = {styles2.button} id = {styles2.buttonFunc}>
+3d5a88d2 (jkim172vols    2022-11-29 20:07:08 -0500 280)                         <input onClick={() => {setToggle((toggle) => (toggle ? 0 : 1))}} type = "checkbox" className = {styles2.checkbox} />
+3d5a88d2 (jkim172vols    2022-11-29 20:07:08 -0500 281)                           <div className = {styles2.knobs}>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 282)                             <span>Regular Fontsize</span>
+3d5a88d2 (jkim172vols    2022-11-29 20:07:08 -0500 283)                           </div>
+3d5a88d2 (jkim172vols    2022-11-29 20:07:08 -0500 284)                         <div className = {styles2.layer}></div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 285)                       </div>
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 286)                     </div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 290)                   {list.map(item=>(
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 292)                       {item.Category ? 
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 293)                       (<div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 295)                           <div className = {styles2.row}>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 296)                             <div className = {toggle ? styles2.biglist : styles2.list}>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 297)                               <div className = {styles2.category}> {item.Menu}</div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 299)                           </div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 300)                           <div className = {styles2.dot}></div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 301)                       </div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 302)                       ):(
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 303)                         <div className = {styles2.row}>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 304)                         <div className = {styles2.divider}></div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 305)                         <div className = {toggle ? styles2.bigmenu : styles2.menu}>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 306)                           <div className = {styles2.name}> {item.Menu}</div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 307)                           <div className = {styles2.price}> {item.Price}</div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 309)                       </div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 310)                       )}
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 312)                   ))}
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 313)                 <div className = {styles2.solid}></div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 314)                   {list.length==0 ? 
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 315)                     (
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 316)                       <div className = {toggle ? styles2.bigdefault : styles2.default}>Sorry! <br></br> We don't serve menu info <br></br>for this store :( </div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 317)                     ):(
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 318)                       <div></div>
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 319)                     )}
+d378bca1 (jkim172vols    2022-11-29 22:16:39 -0500 320)               </div>
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 330) export default Pop;
+
+.\frontend\components\MenuBoard\index.tsx
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500 37)                     <div className = {styles.splitleft}>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 38)                       <a className = {styles.emoji}><FontAwesomeIcon icon={faHouse} /></a>
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500 39)                     </div>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 40)                     <div className = {styles.splitright}>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 41)                       <div className = {styles.button} id = {styles.buttonFunc}>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 42)                           <input type = "checkbox" className = {styles.checkbox} />
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 43)                             <div className = {styles.knobs}>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 44)                               <span>Meal Swipe</span>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 45)                             </div>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 46)                           <div className = {styles.layer}></div>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 47)                         </div>
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500 48)                     </div>
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 79)                   <div className = {styles.solid}></div>
+
+.\frontend\components\Popup\Popup.module.scss
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 125) .splitleft2{
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 126)     width: 80%;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 127)     height: 100%;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 128)     left: 0;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 129)     padding-left: 1.5%;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 130)     display: inline-block;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 131) }
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 132) .splitright2{
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 133)     width: 12%;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 134)     height: 100%;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 135)     right: 0;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 136)     padding-left: 1.5%;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 137)     text-align: right;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 138)     display: inline-block;
+e2aff182 (jkim172vols    2022-11-28 13:28:03 -0500 139) }
+d161b0db (jkim172vols    2022-11-28 14:06:43 -0500 152) }
+
+.\frontend\components\MenuBoard\MenuBoard.module.scss
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500  59) 
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500  61)     width: 80%;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500  68)     width: 12%;
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500  69)     height: 100%;
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500  70)     right: 0;
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500  71)     padding-left: 1.5%;
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500  72)     text-align: right;
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500  73)     display: inline-block;
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500  74) }
+e2aff182 (jkim172vols 2022-11-28 13:28:03 -0500  75) 
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  83)     font-size: 1.8em;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  87) .biglist{
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  88)   font-size: 3em;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  89)   font-weight: bold;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  90) }
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  91) 
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  93)     font-size: 1.2em;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  98) .bigmenu{
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500  99)   font-size: 2em;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 100)   padding-top: 5px;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 101)   padding-bottom: 5px;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 102) }
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 103) 
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 104) .category{
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 105)     width: 100%;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 111) .default{
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 112)     width: auto;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 113)     height: auto;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 114)     text-align: center;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 115)     padding: 12%;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 116)     font-weight: bold;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 117)     font-size: 3em;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 118)   }
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 119) 
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 120)   .bigdefault{
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 121)     width: auto;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 122)     height: auto;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 123)     text-align: center;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 124)     padding: 2.9%;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 125)     font-weight: bold;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 126)     font-size: 5em;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 127)   }
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 129) .name{
+ea2a011f (jkim172vols 2022-11-29 22:31:40 -0500 130)     width: 45%;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 131)     left: 5%;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 136) .price{
+ea2a011f (jkim172vols 2022-11-29 22:31:40 -0500 137)     width: 45%;
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 138)     right: 5%;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 181) 
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 182) /*Toggle Switch*/
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 183) .knobs,
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 184) .layer {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 185)   position: absolute;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 186)   top: 0;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 187)   right: 0;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 188)   bottom: 0;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 189)   left: 0;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 190) }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 191) 
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 192) .button {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 193)   position: relative;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 194)   top: 50%;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 195)   width: 150px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 196)   height: 50px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 197)   margin: auto;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 198)   overflow: hidden;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 199)   border-radius: 5px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 200) }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 201) 
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 202) .checkbox {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 203)     position: relative;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 204)     width: 100%;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 205)     height: 100%;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 206)     padding: 0;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 207)     margin: 0;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 208)     opacity: 0;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 209)     cursor: pointer;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 210)     z-index: 3;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 211)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 212)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 213)   .knobs {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 214)     z-index: 2;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 215)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 216)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 217)   .layer {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 218)     width: 100%;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 219)     background-color: rgb(233, 227, 209);
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 220)     transition: 0.5s;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 221)     z-index: 1;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 222)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 223)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 224)   /* Button Function*/
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 225)   #buttonFunc .knobs:before,
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 226)   #buttonFunc .knobs:after,
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 227)   #buttonFunc .knobs span {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 228)     position: absolute;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 229)     top: 4px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 230)     width: 60px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 231)     height: 25px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 232)     font-size: 14px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 233)     font-weight: bold;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 234)     text-align: center;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 235)     line-height: 1;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 236)     padding: 9px 6px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 237)     border-radius: 2px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 238)     transition: 0.5s;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 239)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 240)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 241)   #buttonFunc .knobs:before {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 242)     content: "";
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 243)     left: 4px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 244)     background-color: rgb(148,127,87);
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 245)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 246)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 247)   #buttonFunc .knobs:after {
+d378bca1 (jkim172vols 2022-11-29 22:16:39 -0500 248)     content: "Bigger Fontsize";
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 249)     right: 4px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 250)     color: black;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 251)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 252)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 253)   #buttonFunc .knobs span {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 254)     display: inline-block;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 255)     left: 4px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 256)     color: #fff;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 257)     z-index: 1;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 258)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 259)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 260)   #buttonFunc .checkbox:checked + .knobs span {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 261)     color: black;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 262)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 263)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 264)   #buttonFunc .checkbox:checked + .knobs:before {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 265)     left: 74px;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 266)     background-color: rgb(148,127,87);
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 267)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 268)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 269)   #buttonFunc .checkbox:checked + .knobs:after {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 270)     color: #fff;
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 271)   }
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 272)   
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 273)   #buttonFunc .checkbox:checked ~ .layer {
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 274)     background-color: rgb(233, 227, 209);
+d161b0db (jkim172vols 2022-11-28 14:06:43 -0500 275)   }

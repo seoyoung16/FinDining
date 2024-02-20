@@ -1,0 +1,892 @@
+/data/'Data Collection for Dietary Restrictions.txt'
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  1) ﻿Vegan&Vegetarian
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  2) * Blenz TRECS
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  3) * Blenz Smoothie Bowls@Student Union
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  4) * Dining Hall @ Rocky Top
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  5) * Dunkin Donuts
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  6) * Einstein Bros. Bagels @ Haslam
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  7) * Einstein Bros. Bagels @ Mossman
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  8) * Einstein Bros. Bagels @ Art & Architecture
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400  9) * Fresh Food Company @ Stokely
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 10) * Panda Express @ Cumberland
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 11) * Panda Express @ Student Union
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 12) * Rising Roll
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 13) * Starbucks @ Hodges Library
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 14) * Starbucks @ Student Union
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 15) * Subway @ Student Union
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 16) * Subway @ Fred Brown Hall
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 17) * Twisted Taco
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 18) * Which Wich
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 19)
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 20)
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 21) Lactose-Free
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 22) * Dining Hall @ Rocky Top
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 23) * Dunkin Donuts
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 24) * Einstein Bros. Bagels @ Haslam
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 25) * Einstein Bros. Bagels @ Mossman
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 26) * Einstein Bros. Bagels @ Art & Architecture
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 27) * Fresh Food Company @ Stokely
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 28) * Starbucks @ Hodges Library
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 29) * Starbucks @ Student Union
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 30) * Subway @ Student Union
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 31) * Subway @ Fred Brown Hall
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 32)
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 33)
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 34) Gluten-Free
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 35) * Dining Hall @ Rocky Top
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 36) * Fresh Food Company @ Stokely
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 37) * Rising Roll
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 38) * Twisted Taco
+a44a3ce6 (seoyoung16 2022-11-03 22:51:14 -0400 39) * Which Wich
+
+/frontend/pages/rate/index.tsx
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  1) import { NextPage } from "next";
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  2) import StarRating from "../../components/Rating";
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  3) const Rate: NextPage = () => {
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  4)   return (
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  5)     <>
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  6)       <StarRating/>
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  7)     </>
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  8)   );
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400  9) }
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400 10)
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400 11) export default Rate;
+2548b107 (seoyoung16 2022-11-04 15:05:39 -0400 12)
+
+/frontend/pages/ratepage/index.tsx
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500  1) import { NextPage } from "next";
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500  2) import RatePages from "../../components/RatingPage"
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  3) import { getCookie, setCookie, removeCookie } from "../../components/typescript-cookie"
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  4)
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500  5) //import StarRating from "../../components/RatingPage"
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500  6) //import { RatingPage } from "../../components/RatingPage";
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500  7) const RatePage: NextPage = () => {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  8) //  setCookie('Rating', 'rating')
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500  9)   return (
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500 10)     <>
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500 11)       <RatePages/>
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500 12)     </>
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500 13)   );
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500 14) }
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500 15)
+99dbf781 (seoyoung16 2022-11-06 01:41:14 -0500 16) export default RatePage;
+
+/frontend/components/Rating/Rating.tsx
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400  1) import React, { memo } from "react";
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400  2) import ReactStars from "react-rating-stars-component";
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  3) import { getCookie, setCookie } from 'typescript-cookie';
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  4) import styles from "./Cookie.module.scss";
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400  5)
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400  6) export interface IRatingProps {
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400  7)   activeColor?: string;
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400  8)   count?: number;
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400  9)   size?: number;
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 10)   onChange?: (newRating: number) => void;
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 11) }
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 12)
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 13) const RatingComponent: React.FC<IRatingProps> = ({
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 14)   activeColor,
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 15)   count,
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 16)   size,
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 17)   onChange,
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 18) }) => {
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 19)   return (
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 20)     <ReactStars
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 21)       activeColor = "#ffd700"
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 22)       //activeColor={activeColor}
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 23)       count = {5}
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 24)       size = {50}
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 25)       onChange={onChange}
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 26)     />
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 27)   );
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 28) };
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 29)
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 30) export const Rating = memo(RatingComponent);
+
+/frontend/components/Rating/index.tsx
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 1) export { Rating as default } from "./Rating";
+ca419f71 (seoyoung16 2022-11-04 14:57:57 -0400 2)
+
+/frontend/components/RatingPage/Rating2.tsx
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  1) import React, { memo } from "react";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  2) import ReactStars from "react-rating-stars-component";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  3)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  4) export interface IRatingProps {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  5)   activeColor?: string;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  6)   count?: number;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  7)   size?: number;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  8)   onChange?: (newRating: number) => void;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  9) }
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 10)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 11) const RatingComponent: React.FC<IRatingProps> = ({
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 12)   activeColor,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 13)   count,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 14)   size,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 15)   onChange,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 16) }) => {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 17)   return (
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 18)     <ReactStars
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 19)       activeColor={activeColor}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 20)       count={count}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 21)       size={size}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 22)       onChange={onChange}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 23)     />
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 24)   );
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 25) };
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 26)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 27) export const Rating2 = memo(RatingComponent);
+
+/frontend/components/RatingPage/RatingPage.module.scss
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 1) .RatingPage {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 2)   h2 {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 3)     margin-bottom: 25px;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 4)   }
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 5) }
+
+/frontend/components/RatingPage/RatingPage.tsx
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500  1)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  2) import React, { useState } from "react";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  3) import { Rating2 } from "./Rating2.tsx" //"ui-kit";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  4) import "./RatingPage.module.scss";
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  5) import Cookies from "./Cookie.tsx"
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500  6) import { cookies, useCookies, CookiesProvider } from 'react-cookie';
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  7)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  8) export const RatingPage: React.FC = () => {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  9)   const [rating, setRating] = useState(0);
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 10)   const [cookies, setCookie] = useCookies(['rating']);
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 11)   function onChange(newName) {
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 12)     setCookie('rating', newName, { path: '/' }, {expires: 100});
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 13)     setRating(newName);
+5048cf76 (seoyoung16 2022-11-06 14:08:58 -0500 14)   }
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 15)   return (
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 16)     <section className="RatingPage">
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 17)       <h2>Rating</h2>
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 18)       <CookiesProvider>
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 19)         <Rating2
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 20)           activeColor="#ffd700"
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 21)           count={5}
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 22)           size={45}
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 23)        onChange = {onChange}
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 24)         />
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 25)       </CookiesProvider>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 26)       <div>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 27)       <h2>
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 28)         Rate: {JSON.stringify(rating, null, 2)}
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 29)       </h2>
+d496fa7c (seoyoung16 2022-11-06 16:52:33 -0500 30)       <h1>Cookie: {cookies.rating} </h1>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 31)       </div>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 32)     </section>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 33)   );
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 34) };
+
+/frontend/components/RatingPage/cookie.tsx
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  1) import dayjs, { Dayjs, isDayjs } from "dayjs";
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  2)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  3) export interface CookieOptions {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  4)   domain?: string;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  5)   path?: string;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  6)   sameSite?: "Lax" | "None" | "Strict" | "lax" | "none" | "strict";
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  7)   expires?: Date | Dayjs;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  8)   secure?: boolean;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500  9) }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 10)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 11) /* export function setCookie(
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 12)   name: string,
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 13)   value: string,
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 14)   options?: CookieOptions
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 15) ) {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 16)   if (!name || !value) return;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 17)   let updatedCookie =
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 18)     encodeURIComponent(name) + "=" + encodeURIComponent(value);
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 19)   console.log(updatedCookie);
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 20)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 21)   if (options) {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 22)     for (const [key, value] of Object.entries(options)) {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 23)       let encoded = value;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 24)       if (key === "expires") {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 25)         encoded = isDayjs(value as Date | Dayjs)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 26)           ? dayjs(value).toDate().toUTCString()
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 27)           : value.toUTCString();
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 28)       }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 29)       updatedCookie += ";" + key + "=" + encoded;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 30)     }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 31)   }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 32)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 33)   if (!options?.path) {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 34)     updatedCookie += "; path=/";
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 35)   }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 36)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 37)   document.cookie = updatedCookie;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 38) }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 39) export function getCookie(name: string) {}
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 40) export function removeCookie() {}
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 41)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 42) console.log(document.cookie);
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 43) setCookie("test", true.toString());
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 44) setCookie("test2", "jambon", { sameSite: "lax", secure: true });
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 45) console.log(document.cookie); */
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 46)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 47) export function setCookie(name: string, val: string) {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 48)   const date = new Date();
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 49)   const value = val;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 50)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 51)   // Set it expire in 7 days
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 52)   date.setTime(date.getTime() + 7 * 24 * 60 * 60 * 1000);
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 53)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 54)   // Set it
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 55)   document.cookie =
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 56)     name + "=" + value + "; expires=" + date.toUTCString() + "; path=/";
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 57) }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 58)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 59) export function getCookie(name: string) {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 60)   const value = "; " + document.cookie;
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 61)   const parts = value.split("; " + name + "=");
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 62)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 63)   if (parts.length === 2) {
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 64)     return parts.pop()?.split(";").shift();
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 65)   }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 66) }
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 67)
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 68) setCookie("test", "jambon");
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 69) console.log(document.cookie);
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 70) console.log(getCookie("test"));
+94d33070 (seoyoung16 2022-11-06 15:34:01 -0500 71)
+
+/frontend/components/RatingPage/index.tsx
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 1) export { RatingPage as default } from "./RatingPage";
+
+/frontend/components/RatingPage/tmpindex.tsx
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  1) import RatingPage from "./RatingPage.tsx"
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  2) import styles from "./RatingPage.module.scss"
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  3) import React, {useState } from "react";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  4) //import { Rating } from "../Rating/index.tsx" //"ui-kit";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  5)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  6) //import styles from "./RatingPage.module.scss"
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  7) const RatePages: React.Fc = () => {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  8)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  9)   const [rating, setRating] = useState(0);
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 10)   const handleRatingChange = (newRating: number) => {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 11)     setRating(newRating);
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 12)   };
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 13)   return (
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 14)    // <Rating
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 15)   //    activeColor="#ffd700"
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 16)   //    count={5}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 17)   //    size={45}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 18)   //    onChange={handleRatingChange}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 19)    // />
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 20)     //</section>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 21)       <>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 22)       <h2>Rating</h2>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 23)       <RatingPage
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 24)       activeColor = "#ffd700"
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 25)       count={5}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 26)       size={45}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 27)       onChange={handleRatingChange} />
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 28)       <ratingpage className = {styles.h2}> Meal </ratingpage>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 29)        <div>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 30)       <pre>{JSON.stringify(rating, null, 2)}</pre>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 31)     </div>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 32)       </>
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 33)   );
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 34) }
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 35) export default RatePages;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 36) //export { RatingPage as default } from "./RatingPage";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 37)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 38)
+
+/frontend/components/RatingPage/tmpRatinngPage.tsx
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  1) import React, { memo } from "react";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  2) import ReactStars from "react-rating-stars-component";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  3)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  4) export interface IRatingProps {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  5)   activeColor?: string;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  6)   count?: number;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  7)   size?: number;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  8)   onChange?: (newRating: number) => void;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500  9) }
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 10)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 11) const RatingComponent: React.FC<IRatingProps> = ({
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 12)   activeColor,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 13)   count,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 14)   size,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 15)   onChange,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 16) }) => {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 17)   return (
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 18)     <ReactStars
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 19)       activeColor={activeColor}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 20)       count={count}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 21)       size={size}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 22)       onChange={onChange}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 23)     />
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 24)   );
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 25) };
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 26)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 27) export const RatingPage = memo(RatingComponent);
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 28) /*
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 29) import React, { memo, useState } from "react";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 30) import ReactStars from "react-rating-stars-component";
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 31) import {Rating } from "../Rating"
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 32)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 33) export interface IRatingProps {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 34)   activeColor?: string;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 35)   count?: number;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 36)   size?: number;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 37)   onChange?: (newRating: number) => void;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 38)   //Cookie?: number;
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 39) //  const [rating, setRating] => useState(0);
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 40) }
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 41) //const [rating, setRating] = useState(0);
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 42) const RatingComponent: React.FC<IRatingProps> = ({
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 43)   activeColor,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 44)   count,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 45)   size,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 46)   onChange,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 47)   //Cookie,
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 48) }) => {
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 49)   return (
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 50)     <ReactStars
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 51)       activeColor = "#ffd700"
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 52)       //activeColor={activeColor}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 53)       count = {5}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 54)       size = {50}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 55)       onChange={onChange}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 56)       //Cookie={JSON.stringify(useState(0), null, 2)}
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 57)      />
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 58)   );
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 59) };
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 60)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 61) export const RatingPage = memo(RatingComponent);
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 62)
+5dc17645 (seoyoung16 2022-11-06 01:40:32 -0500 63) */
+
+/frontend/components/typescript-cookie/CookieRating.tsx
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  1) import React, { memo } from "react";
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  2) import ReactStars from "react-rating-stars-component";
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  3)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  4) export interface IRatingProps {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  5)   activeColor?: string;
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  6)   count?: number;
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  7)   size?: number;
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  8)   onChange?: (newRating: number) => void;
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  9)   cookie?: number;
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 10) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 11)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 12) const RatingComponent: React.FC<IRatingProps> = ({
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 13)   activeColor,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 14)   count,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 15)   size,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 16)   onChange,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 17)   cookie,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 18) }) => {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 19)   return (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 20)     <ReactStars
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 21)       activeColor = "#ffd700"
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 22)       count = {5}
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 23)        size = {50}
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 24)       onChange={onChange}
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 25)       //cookie=JSON.stringfy(rating)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 26)     />
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 27)   );
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 28) };
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 29)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 30) export const CookieRating = memo(RatingComponent);
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 31)
+
+/frontend/components/typescript-cookie/api.tsx
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   1) import {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   2)   CookieAttributes,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   3)   CookieAttributesConfig,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   4)   CookieCodecConfig,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   5)   CookieDecoding,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   6)   CookieEncoding,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   7)   Decoder
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   8) } from '../typesindex'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500   9) import {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  10)   decodeName as defaultNameDecoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  11)   decodeValue as defaultValueDecoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  12)   encodeName as defaultNameEncoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  13)   encodeValue as defaultValueEncoder
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  14) } from './codec'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  15)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  16) function stringifyAttributes (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  17)   attributes: CookieAttributes & { expires?: any }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  18) ): string {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  19)   // Copy incoming attributes as to not alter the original object..
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  20)   attributes = Object.assign({}, attributes)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  21)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  22)   if (typeof attributes.expires === 'number') {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  23)     attributes.expires = new Date(Date.now() + attributes.expires * 864e5)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  24)   }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  25)   if (attributes.expires != null) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  26)     attributes.expires = attributes.expires.toUTCString()
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  27)   }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  28)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  29)   return (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  30)     Object.entries(attributes)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  31)       .filter(([key, value]: [string, any]) => value != null && value !== false)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  32)       // Considers RFC 6265 section 5.2:
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  33)       // ...
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  34)       // 3.  If the remaining unparsed-attributes contains a %x3B (";")
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  35)       //     character:
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  36)       // Consume the characters of the unparsed-attributes up to,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  37)       // not including, the first %x3B (";") character.
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  38)       // ...
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  39)       .map(([key, value]: [string, string | true]) =>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  40)         value === true ? `; ${key}` : `; ${key}=${value.split(';')[0]}`
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  41)       )
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  42)       .join('')
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  43)   )
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  44) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  45)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  46) type GetReturn<T, R> = [T] extends [undefined]
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  47)   ? { [property: string]: R }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  48)   : R | undefined
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  49)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  50) function get<T extends string | undefined, U> (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  51)   name: T,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  52)   decodeValue: Decoder<U>,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  53)   decodeName: Decoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  54) ): GetReturn<T, U> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  55)   const scan = /(?:^|; )([^=]*)=([^;]*)/g
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  56)   const jar: any = {}
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  57)   let match
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  58) //  while ((match = scan.exec(document.cookie)) != null) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  59)     try {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  60)       const found = decodeName(match[1])
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  61)       jar[found] = decodeValue(match[2], found)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  62)       if (name === found) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  63)  //       break
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  64)       }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  65)     } catch (e) {}
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  66) //  }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  67)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  68)   return name != null ? jar[name] : jar
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  69) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  70)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  71) export const DEFAULT_CODEC: CookieCodecConfig<
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  72) string | number | boolean | undefined | null,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  73) string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  74) > = Object.freeze({
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  75)   decodeName: defaultNameDecoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  76)   decodeValue: defaultValueDecoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  77)   encodeName: defaultNameEncoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  78)   encodeValue: defaultValueEncoder
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  79) })
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  80)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  81) export const DEFAULT_ATTRIBUTES: CookieAttributesConfig = Object.freeze({
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  82)   path: '/'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  83) })
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  84)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  85) // The following overloads are necessary as to make the type of `value`
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  86) // and encoder dependent and achieve typesafety along with default encoder
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  87) // in the destructured argument of `setCookie()`:
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  88) // These types are all ok and default encoder deals with them:
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  89) // setCookie('c', 'foo')
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  90) // setCookie('c', 1234)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  91) // setCookie('c', true)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  92) // setCookie('c', undefined)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  93) // setCookie('c', null)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  94) // Objects are not supported by the default encoder and require
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  95) // an encoder that operates on the given type..
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  96) // setCookie('c', {}) // Argument of type '{}' is not assignable to parameter of type 'string | number | boolean'.
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  97) // setCookie('c', {}, undefined, { encodeValue: (v) => v as string }) // Ok!
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  98) // setCookie('c', new Date()) // Argument of type 'Date' is not assignable to parameter of type 'string | number | boolean'.
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  99) // setCookie('c', new Date(), undefined, { encodeValue: (v) => v.toISOString() }) // Ok!
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 100) export function setCookie<
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 101)   T extends string | number | boolean | undefined | null
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 102) > (name: string, value: T): string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 103)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 104) export function setCookie<
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 105)   T extends string | number | boolean | undefined | null
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 106) > (name: string, value: T, attributes: CookieAttributes): string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 107)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 108) export function setCookie<T extends {}> (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 109)   name: string,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 110)   value: T,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 111)   attributes: CookieAttributes | undefined,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 112)   { encodeValue, encodeName }: CookieEncoding<T>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 113) ): string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 114)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 115) export function setCookie (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 116)   name: string,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 117)   value: string | number | boolean | undefined | null,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 118)   attributes: CookieAttributes = DEFAULT_ATTRIBUTES,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 119)   {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 120)     encodeValue = defaultValueEncoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 121)     encodeName = defaultNameEncoder
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 122)   }: CookieEncoding<string | number | boolean | undefined | null> = {}
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 123) ): string {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 124) //  return (document.cookie = `${encodeName(name)}=${encodeValue(
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 125) //    value,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 126) //    name
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 127) //  )}${stringifyAttributes(attributes)}`)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 128) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 129)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 130) export function getCookie (name: string): string | undefined
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 131)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 132) export function getCookie<T extends {}> (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 133)   name: string,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 134)   { decodeValue, decodeName }: CookieDecoding<T>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 135) ): T | undefined
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 136)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 137) export function getCookie (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 138)   name: string,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 139)   {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 140)     decodeValue = defaultValueDecoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 141)     decodeName = defaultNameDecoder
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 142)   }: CookieDecoding<string> = {}
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 143) ): string | undefined {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 144)   return get(name, decodeValue, decodeName)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 145) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 146)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 147) export function getCookies (): {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 148)   [property: string]: string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 149) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 150)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 151) export function getCookies<T extends {}> ({
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 152)   decodeValue,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 153)   decodeName
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 154) }: CookieDecoding<T>): {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 155)   [property: string]: T
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 156) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 157)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 158) export function getCookies ({
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 159)   decodeValue = defaultValueDecoder,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 160)   decodeName = defaultNameDecoder
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 161) }: CookieDecoding<string> = {}): {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 162)     [property: string]: string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 163)   } {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 164)   return get(undefined, decodeValue, decodeName)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 165) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 166)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 167) export function removeCookie (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 168)   name: string,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 169)   attributes: CookieAttributes = DEFAULT_ATTRIBUTES
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 170) ): void {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 171)   setCookie(
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 172)     name,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 173)     '',
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 174)     Object.assign({}, attributes, {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 175)       expires: -1
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 176)     })
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 177)   )
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 178) }
+
+/frontend/components/typescript-cookie/codec.tsx
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  1) import { Decoder, Encoder } from '../indextypes'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  2)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  3) export const encodeName: Encoder<string> = (name) =>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  4)   encodeURIComponent(name)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  5)     .replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  6)     .replace(/[()]/g, escape)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  7)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  8) export const encodeValue: Encoder<
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  9) string | number | boolean | undefined | null
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 10) > = (value) => {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 11)   return encodeURIComponent(value as string).replace(
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 12)     /%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 13)     decodeURIComponent
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 14)   )
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 15) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 16)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 17) export const decodeName: Decoder<string> = decodeURIComponent
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 18)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 19) export const decodeValue: Decoder<string> = (value) => {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 20)   if (value[0] === '"') {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 21)     value = value.slice(1, -1)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 22)   }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 23)   return value.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 24) }
+
+/frontend/components/typescript-cookie/compat.tsx
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  1) import { CookieAttributes, CookieConverter, Cookies } from '../types/index'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  2) import {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  3)   DEFAULT_ATTRIBUTES,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  4)   DEFAULT_CODEC,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  5)   getCookie,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  6)   getCookies,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  7)   removeCookie,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  8)   setCookie
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  9) } from './api'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 10)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 11) function init<W, R> (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 12)   converter: CookieConverter<W, R>,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 13)   defaultAttributes: CookieAttributes
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 14) ): Cookies<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 15)   const api: any = {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 16)     set: function (name: any, value: any, attributes?: any) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 17)       return setCookie(
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 18)         name,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 19)         value,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 20)         Object.assign({}, this.attributes, attributes),
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 21)         {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 22)           encodeValue: this.converter.write
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 23)         }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 24)       )
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 25)     },
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 26)     get: function (name?: any) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 27)       if (arguments.length === 0) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 28)         return getCookies(this.converter.read)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 29)       }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 30)       if (name == null) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 31)         return
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 32)       }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 33)       return getCookie(name, this.converter.read)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 34)     },
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 35)     remove: function (name: any, attributes?: any) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 36)       removeCookie(name, Object.assign({}, this.attributes, attributes))
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 37)     },
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 38)     withAttributes: function (attributes: any) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 39)       return init(
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 40)         this.converter,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 41)         Object.assign({}, this.attributes, attributes)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 42)       )
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 43)     },
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 44)     withConverter: function (converter: any) {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 45)       return init(Object.assign({}, this.converter, converter), this.attributes)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 46)     }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 47)   }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 48)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 49)   const config: any = {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 50)     attributes: { value: Object.freeze(defaultAttributes) },
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 51)     converter: { value: Object.freeze(converter) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 52)   }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 53)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 54)   return Object.create(api, config)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 55) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 56)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 57) export default init(
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 58)   { read: DEFAULT_CODEC.decodeValue, write: DEFAULT_CODEC.encodeValue },
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 59)   DEFAULT_ATTRIBUTES
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 60) )
+
+/frontend/components/typescript-cookie/index.tsx
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  1) import * as Types from './indextypes'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  2) //import { getCookie, setCookie } from 'typescript-cookie'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  3)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  4) export { Types }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  5) export {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  6)   DEFAULT_ATTRIBUTES,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  7)   DEFAULT_CODEC,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  8)   getCookie,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  9)   getCookies,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 10)   removeCookie,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 11)   setCookie
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 12) } from './api'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 13) export { default as Cookies } from './compat'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 14)
+
+/frontend/components/typescript-cookie/indextypes.tsx
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  1) export interface CookieAttributes {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  2)   path?: string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  3)   domain?: string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  4)   expires?: number | Date
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  5)   sameSite?: 'strict' | 'Strict' | 'lax' | 'Lax' | 'none' | 'None'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  6)   secure?: boolean
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  7)   [property: string]: any
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  8) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  9)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 10) export type CookieAttributesConfig = Readonly<CookieAttributes>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 11)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 12) export type Decoder<T> = (value: string, name?: string) => T
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 13)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 14) export type Encoder<T> = (value: T, name?: string) => string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 15)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 16) export interface CookieDecoding<T> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 17)   readonly decodeName?: Decoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 18)   readonly decodeValue?: Decoder<T>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 19) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 20)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 21) export interface CookieEncoding<T> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 22)   readonly encodeName?: Encoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 23)   readonly encodeValue?: Encoder<T>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 24) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 25)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 26) export interface CookieCodecConfig<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 27)   readonly decodeName: Decoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 28)   readonly decodeValue: Decoder<R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 29)   readonly encodeName: Encoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 30)   readonly encodeValue: Encoder<W>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 31) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 32)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 33) export interface CookieConverter<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 34)   read: Decoder<R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 35)   write: Encoder<W>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 36) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 37)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 38) export type CookieConverterConfig<W, R> = Readonly<CookieConverter<W, R>>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 39)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 40) interface CookiesConfig<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 41)   readonly converter: CookieConverterConfig<W, R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 42)   readonly attributes: CookieAttributesConfig
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 43) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 44)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 45) interface CookiesApi<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 46)   set: (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 47)     name: string,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 48)     value: W,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 49)     attributes?: CookieAttributes
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 50)   ) => string | undefined
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 51)   get: (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 52)     name?: string | undefined | null
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 53)   ) => R | undefined | { [property: string]: R }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 54)   remove: (name: string, attributes?: CookieAttributes) => void
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 55)   withAttributes: <W, R>(attributes: CookieAttributes) => Cookies<W, R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 56)   withConverter: <W, R>(converter: {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 57)     write?: Encoder<W>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 58)     read?: Decoder<R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 59)   }) => Cookies<W, R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 60) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 61)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 62) export type Cookies<W, R> = CookiesConfig<W, R> & CookiesApi<W, R>
+
+/frontend/components/typescript-cookie/typesindex.tsx
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  1) export interface CookieAttributes {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  2)   path?: string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  3)   domain?: string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  4)   expires?: number | Date
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  5)   sameSite?: 'strict' | 'Strict' | 'lax' | 'Lax' | 'none' | 'None'
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  6)   secure?: boolean
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  7)   [property: string]: any
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  8) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500  9)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 10) export type CookieAttributesConfig = Readonly<CookieAttributes>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 11)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 12) export type Decoder<T> = (value: string, name?: string) => T
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 13)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 14) export type Encoder<T> = (value: T, name?: string) => string
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 15)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 16) export interface CookieDecoding<T> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 17)   readonly decodeName?: Decoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 18)   readonly decodeValue?: Decoder<T>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 19) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 20)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 21) export interface CookieEncoding<T> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 22)   readonly encodeName?: Encoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 23)   readonly encodeValue?: Encoder<T>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 24) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 25)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 26) export interface CookieCodecConfig<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 27)   readonly decodeName: Decoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 28)   readonly decodeValue: Decoder<R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 29)   readonly encodeName: Encoder<string>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 30)   readonly encodeValue: Encoder<W>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 31) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 32)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 33) export interface CookieConverter<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 34)   read: Decoder<R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 35)   write: Encoder<W>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 36) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 37)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 38) export type CookieConverterConfig<W, R> = Readonly<CookieConverter<W, R>>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 39)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 40) interface CookiesConfig<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 41)   readonly converter: CookieConverterConfig<W, R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 42)   readonly attributes: CookieAttributesConfig
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 43) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 44)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 45) interface CookiesApi<W, R> {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 46)   set: (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 47)     name: string,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 48)     value: W,
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 49)     attributes?: CookieAttributes
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 50)   ) => string | undefined
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 51)   get: (
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 52)     name?: string | undefined | null
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 53)   ) => R | undefined | { [property: string]: R }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 54)   remove: (name: string, attributes?: CookieAttributes) => void
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 55)   withAttributes: <W, R>(attributes: CookieAttributes) => Cookies<W, R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 56)   withConverter: <W, R>(converter: {
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 57)     write?: Encoder<W>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 58)     read?: Decoder<R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 59)   }) => Cookies<W, R>
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 60) }
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 61)
+4f241c28 (seoyoung16 2022-11-06 14:19:59 -0500 62) export type Cookies<W, R> = CookiesConfig<W, R> & CookiesApi<W, R>
+
+/frontend/components/CampusMap/campusmap.module.scss
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  55)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  56) /* Add a dark background to the active button */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  57) .btn2.active {
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  58)   background-color: black; //#FF8C00;//666;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  59)   color: black; //#FF8C00;//white;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  60) }
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  61)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  62)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  63) .logo{
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  64)     position: absolute;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  65)     width: 400px;
+fe0645f9 (seoyoung16    2022-11-03 21:35:02 -0400  66)     height: 100px;
+fe0645f9 (seoyoung16    2022-11-03 21:35:02 -0400  67)     bottom: 0;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  68)     background: url(Logo.png);
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  69)     background-size: contain;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  70)     background-repeat: no-repeat;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  71)     z-index:1;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  72) }
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  73)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  74) .ListButton{
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  75)     position: absolute;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  76)     top: 0px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  77)     left:0px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  78)     width: 70px;  //70px
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  79)     height: 70px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  80)     background: url(List_Button.png);
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  81)     background-size: contain;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  82)     cursor: pointer;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  83)     z-index: 5;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  84) }
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  88)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  89) .ListButton2{
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  90)     position: absolute;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  91)     width: 80px;  //70px
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  92)     height: 80px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  93)     top: 150px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  94)     left: 30px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  95)     background: url(List_Button.png);
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  96)     background-size: contain;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  97)     cursor: pointer;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  98) }
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400  99)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 100) .sidebar {
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 101)   position: absolute;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 104)   left: 0px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 105)   height: 100%; //800px; /* 100% Full-height */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 106)   width: 400px; //250px; /* 0 width - change this with JavaScript */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 107)   position: fixed; /* Stay in place */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 108)   z-index: 6; /* Stay on top */  //here is the problem
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 109)   background-color: #FFA500; //orange
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 110)   overflow-x: hidden; /* Disable horizontal scroll */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 112)   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 113) }
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 114)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 115) /* The sidebar links */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 116) .sidebar a {
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 117)   padding: 0px 0px 0px 0px;  //up right down left
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 118)   text-decoration: none;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 119)   font-size: 35px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 120)   color: white;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 121)   display: block;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 122)   transition: 0.3s;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 123) }
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 124)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 125) /* When you mouse over the navigation links, change their color */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 126) .sidebar a:hover {
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 127)   color: #5A5A5A;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 128) }
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 129)
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 130) #main {
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 131)   transition: margin-left .5s; /* If you want a transition effect */
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 132)   padding: 20px;
+b55d646d (seoyoung16    2022-11-03 20:58:11 -0400 133) }
+
+/frontend/components/CampusMap/index.tsx
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 10) import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 11) import { faFilter } from '@fortawesome/free-solid-svg-icons';
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 12) import Button from "./CustomButtonComponents.tsx"
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 13)
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 31)   const [left, something] = useState(-450);
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 32)   const anything = {left:left, top:0}
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 42)
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 52)
+b55d646d (seoyoung16     2022-11-03 20:58:11 -0400 66)

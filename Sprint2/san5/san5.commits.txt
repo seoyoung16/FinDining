@@ -1,0 +1,324 @@
+FinDining/frontend/components/ListBtn/CustomButtonComponent.tsx
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  1) import React from "react";
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  2)
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  3) interface Props {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  4)   border: string;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  5)   color: string;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  6)   children?: React.ReactNode;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  7)   height: string;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  8)   onClick: () => void;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  9)   radius: string
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 10)   width: string;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 11) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 12)
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 13) const Button: React.FC<Props> = ({
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 14)     left,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 15)     top,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 16)     border,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 17)     color,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 18)     children,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 19)     height,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 20)     onClick,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 21)     radius,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 22)     width
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 23)   }) => {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 24)   return (
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 25)     <button
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 26)       onClick={onClick}
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 27)       style={{
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 28)          backgroundColor: color,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 29)          border,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 30)          borderRadius: radius,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 31)          height,
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 32)          width
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 33)       }}
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 34)     >
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 35)     {children}
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 36)     </button>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 37)   );
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 38) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 39)
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 40) export default Button;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 41)
+
+FinDining/frontend/components/ListBtn/ListBtn.module.scss
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   1) .emoji{
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   2)     background-color: #FFA500; //gb(238, 237, 234);
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   3)     color: white;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   4)     font-size: 1.7em;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   5)     margin: 0;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   6)     padding: 8px 8px 6px 8px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   7)     //cursor: pointer;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   8)     border: 1px solid white;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400   9)     left: 0;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  10)     display: inline-block;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  11) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  12) .custom-btn {
+[O90842741 (seoyoung16 2022-10-24 23:42:59 -0400  13)   width: fit-content;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  14)   height: 36px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  15)   white-space: nowrap;
+[I90842741 (seoyoung16 2022-10-24 23:42:59 -0400  16)   font-size: 14px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  17)   font-weight: 500;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  18)   background-color: black;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  19)   border: 1px solid black;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  20)   border-radius: 4px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  21)   display: flex; 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  22)   align-items: center;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  23)   padding: 0 16px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  24)   color: #FFA500;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  25)   line-height: 16px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  26)   cursor: pointer;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  27)   &.color-white {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  28)     background-color: white;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  29)     border: 1px solid black;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  30)     color: black;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  31)     &:hover {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  32)       background-color: black;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  33)     }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  34)     &.no-outline {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  35)       border: 0;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  36)     }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  37)     &:disabled {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  38)      color:#fff;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  39)     }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  40)   }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  41)   &:disabled {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  42)     background-color: black;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  43)     border-color:black;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  44)     &:hover {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  45)       background-color: black;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  46)       cursor: default;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  47)     }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  48)   }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  49) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  50) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  51) /*
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  52) .container {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  53)   overflow: hidden;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  54) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  55) */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  56) .filterDiv {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  57)   float: left;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  58)   background-color: #2196F3;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  59)   color: #FF8C00;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  60)   width: 100px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  61)   line-height: 100px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  62)   text-align: center;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  63)   margin: 2px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  64)   display: none; /* Hidden by default */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  65) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  66) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  67) /* The "show" class is added to the filtered elements */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  68) .show {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  69)   display: block;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  70) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  71) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  72) /* Style the buttons */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  73) .btn {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  74)   position: absolute;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  75)   top: 100px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  76)   left: 53px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  77)   border: none; //1px solid;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  78)   outline: none;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  79)   padding: 16px 20px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  80)   //radius: 5%;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  81)   background-color: white; //#FF8C00; //dark orange
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  82)   cursor: pointer;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  83) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  84) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  85) /* Style the buttons - vegetarian */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  86) .btn2 {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  87)   position: absolute;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  88)   top: 100px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  89)   left: 170px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  90)   border: none; //1px solid;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  91)   outline: none;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  92)   padding: 16px 20px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  93)   //radius: 5%;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  94)   background-color: white; //#FF8C00; //dark orange
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  95)   cursor: pointer;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  96) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  97) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  98) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  99) /* Add a light grey background on mouse-over */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 100) .btn:hover {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 101)   background-color: #ddd;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 102) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 103) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 104) /* Add a dark background to the active button */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 105) .btn.active {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 106)   background-color: black; 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 107)   color: black; 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 108) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 109) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 110) /* Add a light grey background on mouse-over */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 111) .btn2:hover {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 112)   background-color: #ddd;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 113) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 114) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 115) /* Add a dark background to the active button */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 116) .btn2.active {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 117)   background-color: black; //#FF8C00;//666;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 118)   color: black; //#FF8C00;//white;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 119) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 120) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 121) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 122) .logo{
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 123)     position: absolute;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 124)     width: 300px; //500:300
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 125)     height: 130px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 126)     top: 520px;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 127)     background: url(Logo.png);
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 128)     background-size: contain;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 129)     background-repeat: no-repeat;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 130) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 131) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 133)     position: absolute;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 134)     top: 0px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 135)     left:0px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 136)     width: 80px;  //70px
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 137)     height: 80px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 138)     background: url(List_Button.png);
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 139)     background-size: contain;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 140)     cursor: pointer;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 141) }
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 142) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 143) .ListButton2{
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 144)     position: absolute;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 145)     width: 80px;  //70px
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 146)     height: 80px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 147)     top: 150px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 148)     left: 30px;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 150)     background-size: contain;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 151)     cursor: pointer;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 152) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 153) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 154) .sidebar {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 155)   position: absolute;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 156)   top: 150px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 157)   left: 0px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 158)   height: 100%; //800px; /* 100% Full-height */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 159)   width: 450px; //250px; /* 0 width - change this with JavaScript */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 160)   position: fixed; /* Stay in place */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 161)   z-index: 1; /* Stay on top */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 162)   background-color: #FFA500; //orange
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 163)   overflow-x: hidden; /* Disable horizontal scroll */
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 164)   padding-top: 100px; /* Place content 60px from the top */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 165)   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 166) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 167) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 168) /* The sidebar links */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 169) .sidebar a {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 170)   padding: 0px 0px 0px 0px;  //up right down left
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 171)   text-decoration: none;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 172)   font-size: 35px;
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 173)   color: white;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 174)   display: block;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 175)   transition: 0.3s;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 176) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 177) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 178) /* When you mouse over the navigation links, change their color */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 179) .sidebar a:hover {
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 180)   color: #5A5A5A;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 181) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 182) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 183) /* Position and style the close button (top right corner) */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 184) .sidebar .closebtn {
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 185)   position: absolute;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 186)   top: 0;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 187)   right: 25px;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 188)   font-size: 36px;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 189)   margin-left: 50px;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 190) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 191) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 192) /* The button used to open the sidebar */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 193) .openbtn {
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 194)   font-size: 20px;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 195)   cursor: pointer;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 196)   background-color: #111;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 197)   color: white;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 198)   padding: 10px 15px;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 199)   border: none;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 200) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 201) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 202) .openbtn:hover {
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 203)   background-color: #444;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 204) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 205) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 206) /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 207) #main {
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 208)   transition: margin-left .5s; /* If you want a transition effect */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 209)   padding: 20px;
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 210) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 211) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 212) /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 213) @media screen and (max-height: 450px) {
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 214)   .sidebar {padding-top: 15px;}
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 215)   .sidebar a {font-size: 18px;}
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 217) 
+
+FinDining/frontend/components/ListBtn/index.tsx
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  1) import styles from "./ListBtn.module.scss";
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  2) import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  3) import { faFilter } from '@fortawesome/free-solid-svg-icons';
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  4) 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400  5) import React, { ReactNode, useState } from "react";
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400  6) import Button from "./CustomButtonComponent.tsx";
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400  8) const ListBtn: React.Fc = () => { 
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400  9)   const [left, something] = useState(-450);
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 10)   const anything = {left:left, top:0}
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 11)   return (
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 12)     <>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 13)       <div className = {styles.logo}></div>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 14)       <div className={styles.sidebar} style = {anything}>  {/*apply style into styles sidebar*/}
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 15)       <div onClick = {() => {something(-450)}} className = {styles.ListButton}></div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 16) {/*
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 17) <div className = {styles.emoji}><FontAwesomeIcon icon={faFilter} /> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 18) */}
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 19)       {/* filter icon */}
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 20)       
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 21)       <div id="myBtnContainer">
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 22)         <div className = {styles.emoji}><FontAwesomeIcon icon={faFilter} /> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 23)         <button className={styles.btn}> Meal Swipe </button>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 24) 	<button className={styles.btn2}> Vegetarian </button>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 25)       </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 26) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 27) {/*	<a href="#">ㅤㅤㅤㅤㅤFilter</a>   
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 28) 	- meal swipe
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 29) 	- vegetarian
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 30) */}
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 31)         <a href="#">ㅤㅤㅤㅤ</a>	
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 32) 	<div>    <a href="#">ㅤㅤDining Place 1</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 33)         <div>    <a href="#">ㅤㅤDining Place 2</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 34)         <div>    <a href="#">ㅤㅤDining Place 3</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 35)         <div>    <a href="#">ㅤㅤDining Place 4</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 36)         <div>    <a href="#">ㅤㅤDining Place 5</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 37)         <div>    <a href="#">ㅤㅤDining Place 6</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 38)         <div>    <a href="#">ㅤㅤDining Place 7</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 39)         <div>    <a href="#">ㅤㅤDining Place 8</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 40)         <div>    <a href="#">ㅤㅤDining Place 9</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 41)         <div>    <a href="#">ㅤㅤDining Place 10</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 42)         <div>    <a href="#">ㅤㅤDining Place 11</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 43)         <div>    <a href="#">ㅤㅤDining Place 12</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 44)         <div>    <a href="#">ㅤㅤDining Place 13</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 45)         <div>    <a href="#">ㅤㅤDining Place 14</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 46)         <div>    <a href="#">ㅤㅤDining Place 15</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 47)         <div>    <a href="#">ㅤㅤ</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 48)         <div>    <a href="#">ㅤㅤ</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 49)         <div>    <a href="#">ㅤㅤ</a> </div>
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 50) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 51) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 52) 
+90842741 (seoyoung16 2022-10-24 23:42:59 -0400 53) {/*
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 54)         <a href="javascript:void(0)" className={styles.closebtn} onclick="closeNav()">&times;</a>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 55) 	<a href="#">About</a>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 56)         <a href="#">Services</a>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 57)         <a href="#">Clients</a>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 58)         <a href="#">Contact</a>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 59) 	*/}
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 60)       </div>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 61)        <div onClick = {() => {something(0)}} className = {styles.ListButton}></div>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 62)     </>
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 63)   );
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 64) }
+6bfcea44 (seoyoung16 2022-10-24 17:35:28 -0400 67) 

@@ -1,0 +1,31 @@
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400  1) import styles from "./ListBtn.module.scss"
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400  2)
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400  3) const ListBtn: React.FC = () =>{
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400  4)     return(
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400  5)         <>
+2cdb7496 (seoyoung16 2022-10-10 16:24:28 -0400  6)         <div className = {styles.ListButton}></div>
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400  7)         </>
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400  8)     )
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400  9) };
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400 10)
+0441927d (seoyoung16 2022-10-10 16:18:20 -0400 11) export default ListBtn;
+
+1faab6b4 (seoyoung16 2022-10-10 16:28:26 -0400 1) .ListButton{
+1faab6b4 (seoyoung16 2022-10-10 16:28:26 -0400 2)     width: 100px;
+1faab6b4 (seoyoung16 2022-10-10 16:28:26 -0400 3)     height: 100px;
+1faab6b4 (seoyoung16 2022-10-10 16:28:26 -0400 4)     background: url(List_Button.png);
+1faab6b4 (seoyoung16 2022-10-10 16:28:26 -0400 5)     background-size: cover;
+1faab6b4 (seoyoung16 2022-10-10 16:28:26 -0400 6) }
+
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400  1) import { NextPage } from "next";
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400  2) import ListBtn from "../../components/ListBtn";
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400  3)
+2a099422 (seoyoung16 2022-10-10 16:27:53 -0400  4) const List: NextPage = () => {
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400  5)   return (
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400  6)     <>
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400  7)       <ListBtn/>
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400  8)     </>
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400  9)   );
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400 10) }
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400 11)
+e38a88b0 (seoyoung16 2022-10-10 16:01:34 -0400 12) export default List;

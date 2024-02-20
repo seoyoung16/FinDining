@@ -1,0 +1,42 @@
+.container {
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 25px;
+}
+.filter {
+    span {
+        font-size: 1.75em;
+        display: block;
+        color: #ffffff;
+    }
+    select {
+        width: 100%;
+        background-color: #FFE8BC;//#FFC965;
+        font-family: "Bitter", sans-serif;
+        font-size: 1.25em;
+        padding: 5px;
+        overflow-y: auto;
+        // option:nth-child(odd) {
+        //     background-color: #FFE8BC;
+        // }
+    }
+}
+.filter select::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+// .filter select::-webkit-scrollbar-track {
+//     border: 1px solid;
+//     border-radius: 10px;
+// }
+
+.filter select::-webkit-scrollbar-thumb {
+    background: rgb(255, 165, 0);  
+    border-radius: 20px;
+}
+
+.filter select::-webkit-scrollbar-thumb:hover {
+    background: rgb(251, 191, 80);  
+}
+  

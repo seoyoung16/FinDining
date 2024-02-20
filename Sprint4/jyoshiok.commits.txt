@@ -1,0 +1,459 @@
+./frontend/components/CampusMap/index.tsx
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  11) import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  12) import Search from "../Search";
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  33) interface Time {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  34)   hour: number;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  35)   minute: number;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  36) }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  37) 
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  38) interface FiltersDietRestrict {
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  39)   vegan: boolean;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  40)   lactose: boolean;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  41)   gluten: boolean;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  42) }
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  43) 
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  44) interface FiltersMeal {
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  45)   breakfast: boolean;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  46)   lunch: boolean;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  47)   dinner: boolean;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  48) }
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  49) 
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  50) interface FiltersLocation {
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  51)   central: boolean;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  52)   north: boolean,
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  53)   west: boolean,
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  54)   south: boolean,
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  55)   east: boolean
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  56) }
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  57) 
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  58) interface FiltersHours {
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  59)   openingSoon: boolean;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  60)   currentlyOpen: boolean,
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  61)   closingSoon: boolean,
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  62)   currentlyClosed: boolean
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  63) }
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  64) 
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  65) export interface Filters {
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  66)   dietaryRestrictions: FiltersDietRestrict;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  67)   meal: FiltersMeal;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  68)   location: FiltersLocation;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  69)   hours: FiltersHours;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  70) }
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  71) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  72) // Based on d.getDay() return value
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  73) const daysAsIndices = {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  74)   0: "Sunday",
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  75)   1: "Monday",
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  76)   2: "Tuesday",
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  77)   3: "Wednesday",
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  78)   4: "Thursday",
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  79)   5: "Friday",
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  80)   6: "Saturday"
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  81) }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500  82) 
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  83) const filters: Filters = {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 109) let locations: Array<Array<any>> = [];
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 110) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 111) const getHrAndMin = (military: string): Time => {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 112)   let hour, min;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 113)   if (military.length == 3) { // ex: 700
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 114)     hour = parseInt(military[0]);
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 115)     min = parseInt(military.substring(1, 3), 10);
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 116)   } else if (military.length == 4) { // ex: 1400
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 117)     hour = parseInt(military.substring(0, 2));
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 118)     min = parseInt(military.substring(2, 4), 10);
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 119)   }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 120) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 121)   return { hour: hour, minute: min };
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 122) }
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 123) 
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 130)   const [list, setList] = useState([]); // Array of [locationId, name]
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 166)     //  console.log(testMapBtns)
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 175) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 176)     locations = [];
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 177) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 178)     for (const key in props.data) {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 179)       // Dietary Restrictions
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 180)       if (
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 181)         (filters.dietaryRestrictions.gluten && !props.data[key].glu_free)
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 182)         || (filters.dietaryRestrictions.lactose && !props.data[key].lac_free)
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 183)         || (filters.dietaryRestrictions.vegan && !props.data[key].vegandveg)
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 184)       ) continue;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 185) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 186)       // Meal Swipe
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 187)       if (
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 188)         (filters.meal.breakfast && !props.data[key].ms.includes("Breakfast"))
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 189)         || (filters.meal.lunch && !props.data[key].ms.includes("Lunch"))
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 190)         || (filters.meal.dinner && !props.data[key].ms.includes("Dinner"))
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 191)       ) continue;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 192) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 193)       // Location
+a861e706 (Jovan Yoshioka 2022-11-29 15:19:25 -0500 194)       if (!(
+27d5dc2f (jovanyoshioka  2022-11-29 17:19:44 -0500 195)         (filters.location.central && props.data[key].cardinal === "C")
+27d5dc2f (jovanyoshioka  2022-11-29 17:19:44 -0500 196)         || (filters.location.east && props.data[key].cardinal === "E")
+27d5dc2f (jovanyoshioka  2022-11-29 17:19:44 -0500 197)         || (filters.location.north && props.data[key].cardinal === "N")
+27d5dc2f (jovanyoshioka  2022-11-29 17:19:44 -0500 198)         || (filters.location.south && props.data[key].cardinal === "S")
+27d5dc2f (jovanyoshioka  2022-11-29 17:19:44 -0500 199)         || (filters.location.west && props.data[key].cardinal === "W")
+a861e706 (Jovan Yoshioka 2022-11-29 15:19:25 -0500 200)         || (!filters.location.central && !filters.location.east && !filters.location.north && !filters.location.south && !filters.location.west) // No filter selected.
+a861e706 (Jovan Yoshioka 2022-11-29 15:19:25 -0500 201)       )) continue;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 202) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 203)       // Hours
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 204)       //   Note: "Soon" is defined as within an hour.
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 205)       const d = new Date();
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 206)       // Get current day of the week.
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 207)       const day: string = daysAsIndices[d.getDay()];
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 208)       if (props.data[key].hours[day] === "CLOSED") {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 209)         // Note: need to check all of these instead of !filters.hours.currentlyClosed because <select> is multiple.
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 210)         if ((filters.hours.openingSoon || filters.hours.currentlyOpen || filters.hours.closingSoon) && !filters.hours.currentlyClosed) continue;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 211)       } else if (filters.hours.closingSoon || filters.hours.currentlyClosed || filters.hours.currentlyOpen || filters.hours.openingSoon) { // Should show all if none are selected.
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 212)         let show: boolean = false; // just needs to be true for one of the hours checks below.
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 213)         let openingTime: Time = getHrAndMin(props.data[key].hours[day][0]);
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 214)         let openingTimeInMin: number = openingTime.hour * 60 + openingTime.minute;
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500 215)         let closingTime: Time = getHrAndMin(props.data[key].hours[day][1]);
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 216)         let closingTimeInMin: number = closingTime.hour * 60 + closingTime.minute;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 217)         let currentTime: Time = {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 218)           hour: d.getHours(), // 0 - 23
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 219)           minute: d.getMinutes() // 0 - 59
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 220)         };
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 221)         let currentTimeInMin: number = currentTime.hour * 60 + currentTime.minute;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 222)         
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 223)         // Closing soon
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 224)         if (filters.hours.closingSoon) {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 225)           if (currentTimeInMin > closingTimeInMin - 60 && currentTimeInMin < closingTimeInMin) show = true;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 226)         }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 227) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 228)         // Currently closed
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 229)         if (filters.hours.currentlyClosed) {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 230)           if (currentTimeInMin < openingTimeInMin || currentTimeInMin >= closingTimeInMin) show = true;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 231)         }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 232) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 233)         // Currently open
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 234)         if (filters.hours.currentlyOpen) {
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 235)           if (currentTimeInMin >= openingTimeInMin && currentTimeInMin < closingTimeInMin) show = true;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 236)         }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 237) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 238)         // Opening soon
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 239)         if (filters.hours.openingSoon) {
+61aa7b6d (Jovan Yoshioka 2022-11-29 01:42:14 -0500 240)           // console.log(openingTimeInMin);
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 241)           if (currentTimeInMin > openingTimeInMin - 60 && currentTimeInMin < openingTimeInMin) show = true;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 242)         }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 243) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 244)         if (!show) continue;
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 245)       }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 246) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 247)       // Price
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 288) 
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 289)       // If made this far, then show.
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 291)     }
+77327a2d (jovanyoshioka  2022-11-17 18:01:49 -0500 292) 
+61aa7b6d (Jovan Yoshioka 2022-11-29 01:42:14 -0500 293)     setList(locations);
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 296)   /**
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 297)    * TEMPORARY
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 298)    */
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 299)   useEffect(() => {
+61aa7b6d (Jovan Yoshioka 2022-11-29 01:42:14 -0500 301) 	  //here
+61aa7b6d (Jovan Yoshioka 2022-11-29 01:42:14 -0500 343)     }
+61aa7b6d (Jovan Yoshioka 2022-11-29 01:42:14 -0500 344)     setList(locations);
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 345)   }, []);
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 346) 
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 353)             {!filtersVisibility ? (
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 354)               <>
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 355)                 <Search locations={locations} setList={setList} setFiltersVisibility={setFiltersVisibility} />
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 356)                 {list.length > 0 ? (
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 357)                   list.map(item=>(
+a6ad5538 (jovanyoshioka  2022-11-30 12:19:51 -0500 358)                     <div>    <a onClick={() => { props.openPopup(parseInt(item[0])) }}>ㅤㅤ{item[1]}</a> </div>
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 359)                   ))
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 360)                 ) : (
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 361)                   <p className={styles.emptyMsg}>No dining locations found.</p>
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 362)                 )}
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 363)               </>
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 364)             ) : (
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 365)               <>
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 366)                 <div onClick={() => { setFiltersVisibility((prevState) => (prevState ? 0 : 1)) }} className = {styles.emoji}><FontAwesomeIcon icon={faArrowLeft} /></div>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 367)                 <FiltersElements update={setFilterAttr} status={filters} />
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 368)               </>
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 369)             )}
+
+./frontend/components/CampusMap/campusmap.module.scss
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500   5)     margin: 10px 0 10px 25%;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500   6)     padding: 5px 8px;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  10) 
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  11)     &:hover {
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  12)       cursor: pointer;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  13)     }
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 128)   /* When you mouse over the navigation links, change their color */
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 129)   &:hover {
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 130)     color: #5A5A5A;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 131)     cursor: pointer;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 132)   }
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 135) .sidebar p.emptyMsg {
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 136)   margin: 15px 0 0 0;
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 137)   padding: 0;
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 138)   font-size: 32px;
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 139)   color: white;
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 140)   display: block;
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 141)   text-align: center;
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 142) }
+92798068 (Jovan Yoshioka 2022-11-29 00:54:13 -0500 143)
+
+./frontend/components/Popup/index.tsx
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500  13) import { DataProps } from "../../pages/map/index";
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500  17)   locationId: number;
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500  20)   data: Record<number, DataProps>;
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 123)     // coalesced format at this point: key=>"openTime,closeTime" | value=>['MON','TUE','FRI',...]
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 124) 
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 149) 
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 150)             if (i == coalesced[key].length-1) {
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 151)               coalescedStr += "-" + prev;
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 152)             }
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 180)     let hours: WeeklyHours = {
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 181)       Monday: "",
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 182)       Tuesday: "",
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 183)       Wednesday: "",
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 184)       Thursday: "",
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 185)       Friday: "",
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 186)       Saturday: "",
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 187)       Sunday: ""
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 188)     };
+cf8150a6 (Jovan Yoshioka 2022-11-29 02:21:28 -0500 189)     // Convert data hours from ['openTime','closeTime'] to {open: 'openTime', close: 'closeTime'} for above coalesce operations.
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 190)     const dataHours: Record<string, string | string[]> = props.data[props.locationId].hours;
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 191)     for (const key in dataHours) {
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 192)       if (typeof(dataHours[key]) === "string") {
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 193)         hours[key] = dataHours[key];
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 194)       } else {
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 195)         hours[key] = {
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 196)           open: dataHours[key][0],
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 197)           close: dataHours[key][1]
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 198)         }
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 199)       }
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 200)     }
+cf8150a6 (Jovan Yoshioka 2022-11-29 02:21:28 -0500 202)     
+27d5dc2f (jovanyoshioka  2022-11-29 17:19:44 -0500 203)     setAddressToDisplay({ lineOne: props.data[props.locationId].address, lineTwo: "Knoxville, TN 37916" }); // 1502 Cumberland Ave | Knoxville, TN 37916
+cf8150a6 (Jovan Yoshioka 2022-11-29 02:21:28 -0500 204)     setImgUrl(props.data[props.locationId].image);
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500 229)   }, [props.isVisible]);
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 256)         <ReactStars
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 257)           activeColor = "#947F57"
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 258)           value = {avgRate}
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 259)           count = {5}
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 260)           size = {58}
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 261)           edit = {false}
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 262)           isHalf={true}
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 263)         />
+97bffceb (jovanyoshioka  2022-11-30 12:04:39 -0500 265)           <h1>Loading...</h1>
+
+./frontend/pages/map/index.tsx
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500   2) import { useEffect, useState } from "react";
+9b64b67e (jovanyoshioka  2022-11-28 15:36:03 -0500  25)   hours: Record<string, Array<string> | string>;
+1c6e1ccf (Jovan Yoshioka 2022-11-29 02:08:41 -0500  82)   locationId: number;
+a301c0e0 (jovanyoshioka  2022-11-28 18:55:20 -0500 106) 
+a301c0e0 (jovanyoshioka  2022-11-28 18:55:20 -0500 120)   useEffect(() => {
+a301c0e0 (jovanyoshioka  2022-11-28 18:55:20 -0500 121)     console.log(loc_map);
+a301c0e0 (jovanyoshioka  2022-11-28 18:55:20 -0500 122)   }, []);
+
+./frontend/components/FiltersElements/index.tsx
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  1) import React, { useEffect } from "react"
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  3) import { Filters } from "../CampusMap/index"
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  6)   update: (filterType: string, values: Record<string, boolean>) => void; // Record<string, boolean>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  7)   status: Filters;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 10) const FiltersElements: React.FC<Props> = ({update, status}) => {
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 37)           <option value="vegan" selected={status.dietaryRestrictions.vegan}>Vegan/Vegetarian</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 38)           <option value="lactose" selected={status.dietaryRestrictions.lactose}>Lactose-Free</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 39)           <option value="gluten" selected={status.dietaryRestrictions.gluten}>Gluten-Free</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 49)           <option value="breakfast" selected={status.meal.breakfast}>Breakfast</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 50)           <option value="lunch" selected={status.meal.lunch}>Lunch</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 51)           <option value="dinner" selected={status.meal.dinner}>Dinner</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 60)           <option value="central" selected={status.location.central}>Central</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 61)           <option value="north" selected={status.location.north}>North</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 62)           <option value="west" selected={status.location.west}>West</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 63)           <option value="south" selected={status.location.south}>South</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 64)           <option value="east" selected={status.location.east}>East</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 73)           <option value="openingSoon" selected={status.hours.openingSoon}>Opening Soon</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 74)           <option value="currentlyOpen" selected={status.hours.currentlyOpen}>Currently Open</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 75)           <option value="closingSoon" selected={status.hours.closingSoon}>Closing Soon</option>
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 76)           <option value="currentlyClosed" selected={status.hours.currentlyClosed}>Currently Closed</option> 
+
+./frontend/components/FiltersElements/filterselements.module.scss
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  2)   width: 50%;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500  8)         font-size: 1.75em;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 10)         color: #ffffff;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 14)         background-color: #FFE8BC;//#FFC965;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 16)         font-size: 1.25em;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 17)         padding: 5px;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 19)         // option:nth-child(odd) {
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 20)         //     background-color: #FFE8BC;
+0e1262fc (Jovan Yoshioka 2022-11-29 01:30:08 -0500 21)         // }
+
+./frontend/pages/hello/index.tsx
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500  2) import { useEffect, useState } from "react";
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 11)   const [helloWorldId, setHelloWorldId] = useState(0);
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 12) 
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 13)   useEffect(() => {
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 14)     getHelloWorld(2)
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 15)       .then((response) => setHelloWorldId(response ? parseInt(response) : -1))
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 16)   }, []);
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 17) 
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 21)       <h5>From getStaticProps: {helloWorld}</h5>
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 22)       <h5>From getId: {helloWorldId}</h5>
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 29)     const helloWorld: string | void = await getHelloWorld(2);
+
+./frontend/server/actions/HelloWorld.ts
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  3) export const getHelloWorld = async function (id: number): Promise<string | void> {
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  4)   const data = {
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  5)     'id': id
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  6)   };
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  7) 
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  8)   return fetch('http://localhost:8000/api/hello-world', {
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500  9)     // mode: 'no-cors',
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 10)     method: 'POST',
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 11)     headers: {
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 12)       'Accept': 'application/json',
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 13)       'Content-Type': 'application/json'
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 14)     },
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 15)     // credentials: 'same-origin',
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 16)     body: JSON.stringify(data)
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 17)   })
+9036ef85 (jovanyoshioka 2022-11-29 21:36:14 -0500 20)         return data.myId;
+
+./frontend/components/Search/index.tsx
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  1) import styles from "./search.module.scss";
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  2) import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  3) import { faFilter } from '@fortawesome/free-solid-svg-icons';
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  4) 
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  5) interface Props {
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  6)   locations: Array<Array<any>>;
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  7)   setList: React.Dispatch<React.SetStateAction<any[]>>;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  8)   setFiltersVisibility: React.Dispatch<React.SetStateAction<any>>;
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  9) }
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 10) 
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 11) const Search: React.FC<Props> = ({ locations, setList, setFiltersVisibility }) => {
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 12) 
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 13)   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 14)     const newList: Array<Array<any>> = [];
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 15) 
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 16)     for (let i = 0; i < locations.length; i++) {
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 17)       if (locations[i][1].toUpperCase().includes(e.target.value.toUpperCase())) newList.push(locations[i]);
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 18)     }
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 19) 
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 20)     setList(newList);
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 21)   };
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 22)     
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 23)   return (
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 24)     <div className={styles.center}>
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 25)       <input className={styles.search} onChange={onSearch} type="search" placeholder="Search..." />
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 26)       <div onClick={() => { setFiltersVisibility((prevState) => (prevState ? 0 : 1)) }} className = {styles.emoji}><FontAwesomeIcon icon={faFilter} /></div>
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 27)     </div>
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 28)   )
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 29) }; 
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 30) 
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 31) export default Search;
+
+./frontend/components/Search/search.module.scss
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  1) .center {
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  2)     width: 100%;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  3)     text-align: center;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  4) }
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  5) 
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  6) input.search {
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  7)     width: 75%;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500  8)     margin: 12.5px 0;
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500  9)     padding: 10px 5px;
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 10)     font-size: 1em;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 11)     display: inline-block;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 12) }
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 13) 
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 14) .emoji{
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 15)     background-color: #FFA500; //gb(238, 237, 234);
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 16)     color: white;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 17)     font-size: 1.7em;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 18)     margin: 0 0 0 7.5px;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 19)     padding: 8px 8px 6px 8px;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 20)     border: 1px solid white;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 21)     display: inline-block;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 22)     vertical-align: middle;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 23) 
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 24)     &:hover {
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 25)       cursor: pointer;
+3bbaf7ff (Jovan Yoshioka 2022-11-29 00:48:37 -0500 26)     }
+e2261a5a (jovanyoshioka  2022-11-15 09:10:34 -0500 27) }
+
+./frontend/components/Rate/index.tsx
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500  6) import React, { useEffect, useState } from "react";
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 21)     let isCookieSet: boolean = cookies.rating ? true : false;
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 22)     // console.log(cookies.rating);
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 23)     // console.log(isCookieSet);
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 24)     updateAverageRate(props.locationId, newName, isCookieSet ? cookies.rating : 0, !isCookieSet) // 4th arg: isFirstRating
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 25)       .then((response) => console.log("updateAverageRate Response: " + response));
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 28) 
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 29)     useEffect(() => {
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 30)       setRating(0);
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 31)     }, [props.isVisible]);
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 32) 
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 36)           <div onClick={() => {props.CloseRate(); setRating(-1); }}className = {`${styles.bb} ${props.isVisible ? styles.showbb: ''}`}></div>
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 37)           <div className = {`${styles.bg} ${props.isVisible ? styles.showbg: ''}`}>
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 39)             <div className = {styles.star}>
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 40)               <CookiesProvider>
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 41)               {rating !== -1 ? (
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 42)                 <ReactStars
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 43)                   activeColor = "#947F57"
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 44)                   count = {5}
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 45)                   size = {58}
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 46)                   onChange = {onChange}
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 47)                 />
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 48)               ) : (
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 49)                 <h1>Preparing...</h1>
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 50)               )}
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 51)               </CookiesProvider>
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 52)             </div>
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 53)           </div>
+
+./frontend/components/Rate/rate.module.scss
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500  18)     z-index: 9;
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500  44)     z-index: 10;
+
+./backend/api/views.py
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  4) from django.http import JsonResponse, HttpResponse
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  5) from django.views.decorators.csrf import csrf_exempt
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  6) import json
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  9) @csrf_exempt
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 11)     body_unicode = request.body.decode('utf-8')
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 12)     body = json.loads(body_unicode)
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 13)     id = str(body['id'])
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 14)     # print(id)
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 15)     if (body['id']):
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 16)         data = {
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 17)             'myId': id
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 18)         }
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 19)         #request.POST.get("id") #'Hello World (from the backend)!'
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 20)         return JsonResponse(data)
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 21)     else:
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 22)         data = {
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 23)             'myId': '-1'
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 24)         }
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 25)         #'Hello World (from the backend)!'
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 26)         return JsonResponse(data)
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 36)     # print(locationID)
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 50)     # if isFirstRating >= 1:
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 51)     #     #add number of vote
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 52)     #     num_vote[locationID] = num_vote[locationID] + 1
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 53)     #     df.loc[locationID, 'Votes'] = num_vote[locationID]
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 54)     #     #set average
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 55)     #     df.loc[locationID, 'Average'] = newRating
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 57)     # ### if cookie is already set up
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 58)     # else :
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 59)     #     df.loc[locationID, 'Average'] = ( (average[locationID] * num_vote[locationID]) - Cookie + newRating ) / num_vote[locationID]
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 61)     #set average
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 62)     df.loc[locationID, 'Average'] = ((float(average[locationID]) * float(num_vote[locationID])) + float(newRating)) / (int(num_vote[locationID])+1)
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 63)     #add number of vote
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 64)     num_vote[locationID] = num_vote[locationID] + 1
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 65)     df.loc[locationID, 'Votes'] = num_vote[locationID]
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 66) 
+97bffceb (jovanyoshioka 2022-11-30 12:04:39 -0500 72)     # print(df)
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 79)     body_unicode = request.body.decode('utf-8')
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 80)     body = json.loads(body_unicode)
+
+./backend/backend/settings.py
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  41)     'rest_framework',
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  42)     "corsheaders",
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500  46)     "corsheaders.middleware.CorsMiddleware",
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 128) 
+a301c0e0 (jovanyoshioka 2022-11-28 18:55:20 -0500 129) CORS_ALLOW_ALL_ORIGINS = True

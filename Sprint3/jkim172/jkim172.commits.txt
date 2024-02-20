@@ -1,0 +1,372 @@
+frontend/components/MenuBoard/index.tsx
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400  7) interface Props{
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400  8)     Menu: string;
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400  9)     priceone: string;
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 10)     pricetwo: string;
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 11)     pricethree: string;
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 12) }
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 13) interface Props extends Array<Props>{}
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 14) 
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 15) const MenuBoard: React.FC<Props> = (props) =>{
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 16) 
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 17)     const category: Props = [
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 18)         {Menu: "Entrees", priceone: "", pricetwo: "Sandwich", pricethree: "Meal"},
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 19)         {Menu: "Sides", priceone: "", pricetwo: "Medium", pricethree: "Large"},
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 20)         {Menu: "Treats", priceone: "", pricetwo: "Medium", pricethree: "Large"},
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 21)         {Menu: "Beverages", priceone: "Small", pricetwo: "Medium", pricethree: "Large"}
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 22)     ]
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 23)     
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 24)     const menus: Props = [
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 25)         {Menu: "ChickenBurger", priceone: "", pricetwo: "$ 12.34", pricethree: "$ 56.78"},
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 26)         {Menu: "SpicyBurger", priceone: "", pricetwo: "$ 56.78", pricethree: "$ 90.12"},
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 27)         {Menu: "SpicyBurger", priceone: "", pricetwo: "$ 56.78", pricethree: "$ 90.12"}
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 28)     ]
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 29)     //let i: number = 0;
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 30)     
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 32)         
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 40)                 {/*Menu */}
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 41)                 <div className = {styles.scroll}>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 42)                 {category.map(item=>(
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 43)                     <div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 44)                         <div className = {styles.solid}></div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 45)                         <div className = {styles.row}>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 46)                             <div className = {styles.list}>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 47)                                 <div className = {styles.first}> {item.Menu}</div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 48)                                 <div className = {styles.second}> {item.priceone}</div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 49)                                 <div className = {styles.third}> {item.pricetwo}</div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 50)                                 <div className = {styles.third}> {item.pricethree}</div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 51)                             </div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 52)                         </div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 53)                         <div className = {styles.dot}></div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 54)                         <div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 55)                             {menus.map(mitem => (
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 56)                             <div className = {styles.row}>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 57)                                 <div className = {styles.divider}></div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 58)                                 <div className = {styles.menu}>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 59)                                     <div className = {styles.first}>{mitem.Menu}</div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 60)                                     <div className = {styles.second}>{mitem.priceone}</div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 61)                                     <div className = {styles.third}> {mitem.pricetwo}</div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 62)                                     <div className = {styles.fourth}> {mitem.pricethree}</div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 63)                                 </div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 64)                             </div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 65)                             ))}
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 66)                         </div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 67)                     </div>
+ba204cf7 (jkim172vols 2022-11-04 18:34:15 -0400 68)                 ))}
+7c33f714 (jkim172vols 2022-11-06 15:50:34 -0500 69)                 <div className = {styles.solid}></div>
+
+frontend/components/MenuBoard/MenuBoard.module.scss
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400   2)     from {transform: translateY(-100px); opacity: 0.0}
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400   3)     to {transform: translateY(0); opacity: 1.0}
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400   4) }
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400   5) @keyframes fadeIn {
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400   6)     from {opacity: 0.0}
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400   7)     to {opacity: 0.3}
+6c2f7678 (jkim172vols 2022-11-06 16:48:21 -0500  11)     background-color: rgba(0, 0, 0, 0);
+aac485f0 (jkim172vols 2022-11-06 13:50:24 -0500  13)     height: 100%;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400  14)     top: 50px;
+aac485f0 (jkim172vols 2022-11-06 13:50:24 -0500  15)     animation-name: fadeIn;
+aac485f0 (jkim172vols 2022-11-06 13:50:24 -0500  16)     animation-duration: 0.5;
+aac485f0 (jkim172vols 2022-11-06 13:50:24 -0500  17)     z-index: 7;
+6c2f7678 (jkim172vols 2022-11-06 16:48:21 -0500  21)     border-radius: 15px;
+6c2f7678 (jkim172vols 2022-11-06 16:48:21 -0500  26)     padding: 15px 15px;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  27)     box-shadow: 0 10px 10px 10px rgba(0,0,0,0.2),0 20px 20px 0 rgba(0,0,0,0.2);
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400  37)     padding: 0 10px 0 0;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  48) .showBB {
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  49)     display: block;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  50)     opacity: 0.3;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  51)   }  
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  52) 
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  53) .showBack {
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  54)     display: block !important;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  55)     opacity: 1.0;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  56) }
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  57) 
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  88)     padding-top: 5px;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  89)     padding-bottom: 5px;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400  92) .first{
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400  93)     width: 25%;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400  96)     vertical-align: middle;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400  99) .second{
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 100)     width: 25%;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400 101)     vertical-align: middle;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 102)     display: inline-block;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 103) }
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 104) 
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 105) .third{
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 106)     width: 25%;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400 107)     vertical-align: middle;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 111) .fourth{
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 112)     width: 25%;
+e0eb4551 (jkim172vols 2022-11-04 18:33:01 -0400 113)     vertical-align: middle;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 128) }
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 129) 
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 130) /*Scroll*/
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 131) .scroll{
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 132)     scroll-behavior: smooth;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 133)     height: calc(100% - 3em);
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 134)     overflow-y: auto;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 135) }
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 136) 
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 137) .scroll::-webkit-scrollbar {
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 138)     width: 12px;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 139)     height: 12px;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 140) }
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 141)     
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 142) .scroll::-webkit-scrollbar-track {
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 143) border: 1px solid black;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 144) border-radius: 10px;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 145) }
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 146) 
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 147) .scroll::-webkit-scrollbar-thumb {
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 148)     background: black;  
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 149)     border-radius: 20px;
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 150) }
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 151)     
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 152) .scroll::-webkit-scrollbar-thumb:hover {
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 153)     background: gray;  
+cbedbb55 (jkim172vols 2022-11-03 22:55:25 -0400 154) }
+
+frontend/components/Popup/index.tsx
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400   9) import MenuBoard from "../MenuBoard"
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  10) import { faHouse } from '@fortawesome/free-solid-svg-icons'
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  11) import styles2 from "../../components/MenuBoard/MenuBoard.module.scss"
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500  12) import ReactStars from "react-rating-stars-component";
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  20) interface Food{
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  21)   Menu: string;
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  22)   priceone: string;
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  23)   pricetwo: string;
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  24)   pricethree: string;
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  25) }
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  26) interface Food extends Array<Food>{}
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  27) 
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  53) // interface MenuBoard{
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  54) //   Menu: string;
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  55) //   priceone: string;
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  56) //   pricetwo: string;
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  57) //   pricethree: string;
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  58) // }
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  59) // interface Props extends Array<Props>{}
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  60) 
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  61) const Pop: NextPage<Props, Food> = (props, food) => {
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400  62)   const [popmenu, setBoard] = useState(0);
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 154)   
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 155)   const category: Food = [
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 156)     {Menu: "Entrees", priceone: "", pricetwo: "Sandwich", pricethree: "Meal"},
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 157)     {Menu: "Sides", priceone: "", pricetwo: "Medium", pricethree: "Large"},
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 158)     {Menu: "Treats", priceone: "", pricetwo: "Medium", pricethree: "Large"},
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 159)     {Menu: "Beverages", priceone: "Small", pricetwo: "Medium", pricethree: "Large"}
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 160)   ]
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 161) 
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 162)   const menus: Food = [
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 163)       {Menu: "ChickenBurger", priceone: "", pricetwo: "$ 12.34", pricethree: "$ 56.78"},
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 164)       {Menu: "SpicyBurger", priceone: "", pricetwo: "$ 56.78", pricethree: "$ 90.12"},
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 165)       {Menu: "SpicyBurger", priceone: "", pricetwo: "$ 56.78", pricethree: "$ 90.12"}
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 166)   ]
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 183) 
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 189)         {!popmenu?(
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 190)         <>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 193)           <a className={styles.wrap} onClick={() => { setBoard((prevState) => (prevState ? 0 : 1)) }}><FontAwesomeIcon icon={faUtensils} /></a>
+05c67eb5 (jkim172vols    2022-11-06 14:51:51 -0500 194)           <a onClick={() => {props.closePopup(); setBoard(0);}} className={`${styles.wrap} ${styles.wrapRight}`}><FontAwesomeIcon icon={faX}></FontAwesomeIcon></a>
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 197)         <div className = {styles.opcl}><FontAwesomeIcon icon={faClock} /> OPEN / CLOSE </div>
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 198)           <div className = {styles.star}>
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 199)             <ReactStars
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 200)               activeColor = "#947F57"
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 201)               count = {5}
+7c33f714 (jkim172vols    2022-11-06 15:50:34 -0500 202)               size = {58}
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 203)             />
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 204)           </div>
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 205) 
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 215)         </>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 216)         ) : (
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 217)           <>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 218)           <div onClick={() => { setBoard((prevState) => (prevState ? 1 : 0)) }} className = {styles2.bb}>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 219)             <div className = {styles2.bg}>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 220)                 {/* Icons */}
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 221)                 <div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 222)                     <a onClick={() => { setBoard((prevState) => (prevState ? 0 : 1)) }} className = {styles2.emoji}><FontAwesomeIcon icon={faHouse} /></a>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 223)                 </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 224)                 {/*Menu */}
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 225)                 <div className = {styles2.scroll}>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 226)                 {category.map(item=>(
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 227)                     <div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 228)                         <div className = {styles2.solid}></div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 229)                         <div className = {styles2.row}>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 230)                             <div className = {styles2.list}>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 231)                                 <div className = {styles2.first}> {item.Menu}</div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 232)                                 <div className = {styles2.second}> {item.priceone}</div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 233)                                 <div className = {styles2.third}> {item.pricetwo}</div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 234)                                 <div className = {styles2.third}> {item.pricethree}</div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 235)                             </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 236)                         </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 237)                         <div className = {styles2.dot}></div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 238)                         <div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 239)                             {menus.map(mitem => (
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 240)                             <div className = {styles2.row}>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 241)                                 <div className = {styles2.divider}></div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 242)                                 <div className = {styles2.menu}>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 243)                                     <div className = {styles2.first}>{mitem.Menu}</div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 244)                                     <div className = {styles2.second}>{mitem.priceone}</div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 245)                                     <div className = {styles2.third}> {mitem.pricetwo}</div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 246)                                     <div className = {styles2.fourth}> {mitem.pricethree}</div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 247)                                 </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 248)                             </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 249)                             ))}
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 250)                         </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 251)                     </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 252)                 ))}
+7c33f714 (jkim172vols    2022-11-06 15:50:34 -0500 253)                   <div className = {styles2.solid}></div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 254)                 </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 255)             </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 256)           </div>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 257)           </>
+ba204cf7 (jkim172vols    2022-11-04 18:34:15 -0400 258)         )}
+
+frontend/components/Popup/Popup.module.scss
+6c2f7678 (jkim172vols    2022-11-06 16:48:21 -0500  29)     border-radius: 15px;
+21243e97 (jkim172vols    2022-11-07 01:33:40 -0500  32)     height: 500px;
+6c2f7678 (jkim172vols    2022-11-06 16:48:21 -0500  33)     padding: 15px 15px;
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500  70)     height: 180px;
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500  84)     width: 70%;
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500  85)     left: 0;
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500  86)     display: inline-block;
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500  97) .star{
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500  98)     width: 30%;
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500  99)     right: 0;
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 100)     display: inline-block;
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 101) }
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 102) 
+8f21b1d6 (jkim172vols    2022-11-06 15:30:18 -0500 103) .time{
+e0fd692f (jkim172vols    2022-11-06 16:29:52 -0500 115)     width: 55%;
+e0fd692f (jkim172vols    2022-11-06 16:29:52 -0500 121)     width: 45%;
+
+frontend/components/help_page/index.tsx
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  5) interface Props {
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  6)     isVisible: boolean;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  7)     CloseHelp: () => void;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  8) }
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500 10) const Help: React.FC<Props> = (props) =>{
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500 13)         <>
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500 14)             <div onClick={() => {props.CloseHelp()}}className = {`${styles.bb} ${props.isVisible ? styles.showbb: ''}`}></div>
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500 15)             <div className = {`${styles.bg} ${props.isVisible ? styles.showbg: ''}`}>
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500 18)                     {/* <a onClick={() => {props.CloseHelp()}} className = {styles.emoji}><FontAwesomeIcon icon={faLocationDot} /></a> */}
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 37)                             <div className = {styles.middle}>The store is open when the border around<br/> the store button is green</div>
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 45)                             <div className = {styles.middle}>The store is closed when the border around <br/>the store button is red</div>
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 53)                             <div className = {styles.middle}>Shows the dining location in a streamlined <br/>list sorted by filters</div>
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 85)                             <div className = {styles.middleMenu}>Provides general information about the store.<br/> Information includes open/close times, rating, and menu. The menu popup can be open by the button top left. <br/>The location of the restaurant is shown.</div>
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 88)                     <div className = {styles.solid}></div>
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500 92)             </>
+
+frontend/components/help_page/help.module.scss
+557f2c78 (jkim172vols   2022-11-07 00:56:04 -0500   2)     // from {padding: 100px 150px; opacity: 0%}
+557f2c78 (jkim172vols   2022-11-07 00:56:04 -0500   3)     // to {opacity: 100%} 
+557f2c78 (jkim172vols   2022-11-07 00:56:04 -0500   4)     from {transform: translateY(-100px); opacity: 0.0}
+557f2c78 (jkim172vols   2022-11-07 00:56:04 -0500   5)     to {transform: translateY(0); opacity: 1.0}
+28bebf28 (jkim172vols   2022-11-06 18:49:28 -0500   7) @keyframes fadeIn {
+28bebf28 (jkim172vols   2022-11-06 18:49:28 -0500   8)     from {opacity: 0.0}
+28bebf28 (jkim172vols   2022-11-06 18:49:28 -0500   9)     to {opacity: 0.3}
+28bebf28 (jkim172vols   2022-11-06 18:49:28 -0500  10) }
+557f2c78 (jkim172vols   2022-11-07 00:56:04 -0500  13)     background-color: rgba(0, 0, 0);
+32e062bf (jkim172vols   2022-11-06 17:42:27 -0500  15)     height: 100vh;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  16)     display: none;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  17)     opacity: 0;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  18)     z-index: 7;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  19)     position: absolute;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  20)     top: 0;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  21)     left: 0;
+28bebf28 (jkim172vols   2022-11-06 18:49:28 -0500  22)     animation-name: fadeIn;
+28bebf28 (jkim172vols   2022-11-06 18:49:28 -0500  23)     animation-duration: 0.5s;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  24) }
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  25) .showbb{
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  26)     opacity: 0.3;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  27)     display: block;
+1853e795 (jkim172vols   2022-11-06 18:38:18 -0500  33)     height: auto;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  34)     scroll-behavior: smooth;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  35)     overflow-y: auto;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  36)     border-radius: 15px;
+28bebf28 (jkim172vols   2022-11-06 18:49:28 -0500  38)     padding: 15px 15px;
+557f2c78 (jkim172vols   2022-11-07 00:56:04 -0500  41)     animation-duration: 0.5s;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  42)     display: none;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  43)     opacity: 0;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  44)     z-index: 8;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  45)     position: absolute;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  46)     top: 50px;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  47)     left: 0;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  48)     right: 0;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  49)     margin: 0 auto;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  50) }
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  51) .showbg{
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  52)     opacity: 1.0;
+1e37b5db (jkim172vols   2022-11-06 18:33:02 -0500  53)     display: block !important;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  56) .bg::-webkit-scrollbar {
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  57)     width: 12px;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  58)     height: 12px;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  59) }
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  60)     
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  61) .bg::-webkit-scrollbar-track {
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  62) border: 1px solid black;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  63) border-radius: 10px;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  64) }
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  65) 
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  66) .bg::-webkit-scrollbar-thumb {
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  67)     background: black;  
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  68)     border-radius: 20px;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  69) }
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  70)     
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  71) .bg::-webkit-scrollbar-thumb:hover {
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  72)     background: gray;  
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  73) }
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  74) 
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500  75) 
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 110)     height: auto;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 151)     width: 70%;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 152)     height: 70%;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 157)     width: 60%;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 158)     vertical-align: baseline;
+07101a3c (jkim172vols   2022-11-06 17:29:25 -0500 163)     width: 60%;
+
+frontend/components/CampusMap/index.tsx
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500  16)   OpenHelp: () => void;
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 125)           <ZoomBtns ZoomInFn={zoomIn} ZoomOutFn={zoomOut} ZoomResetFn={() => {centerView()}} OpenHelp={props.OpenHelp}/> {/* resetTransform(), issue when using centerOnInit={true} */}
+
+frontend/components/ZoomBtns/index.tsx
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500  7)     OpenHelp: () => void;
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 13) const ZoomBtn: React.FC<Props> = ({ ZoomInFn, ZoomOutFn, ZoomResetFn, OpenHelp }) =>{
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 21)             <button onClick={OpenHelp} className={styles.help}></button>
+
+frontend/pages/map/index.tsx
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500  4) import Help from "../../components/help_page";
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 16)   OpenHelp: () => void;
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 17) }
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 18) 
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 19) interface HelpProps{
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 20)   isVisible: boolean;
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 21)   CloseHelp: () => void;
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 44)   const showHelp = () => {
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 45)     setHelp(true);
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 46)   }
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 47)   
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 48)   const hideHelp = () => {
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 49)     setHelp(false);
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 50)   }
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 51) 
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 52)   const [helpisVisible, setHelp] = useState(false);
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 53) 
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 57)     openPopup: showPopup,
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 58)     OpenHelp: showHelp
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 61)   const helpProps: HelpProps = {
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 62)     isVisible: helpisVisible,
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 63)     CloseHelp: hideHelp
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 64)   }
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 65) 
+1e37b5db (jkim172vols    2022-11-06 18:33:02 -0500 70)       <Help {...helpProps}/>
+
+frontend/components/ZoomBtns/ZoomBtn.module.scss
+557f2c78 (jkim172vols    2022-11-07 00:56:04 -0500 74) 
+557f2c78 (jkim172vols    2022-11-07 00:56:04 -0500 75) .help:active{
+557f2c78 (jkim172vols    2022-11-07 00:56:04 -0500 76)     filter: drop-shadow(2px 2px 4px gray) invert(10%);
+557f2c78 (jkim172vols    2022-11-07 00:56:04 -0500 77) }
+557f2c78 (jkim172vols    2022-11-07 00:56:04 -0500 78) 
+557f2c78 (jkim172vols    2022-11-07 00:56:04 -0500 79) .help:hover{
+557f2c78 (jkim172vols    2022-11-07 00:56:04 -0500 80)     opacity: 100%;
+557f2c78 (jkim172vols    2022-11-07 00:56:04 -0500 81) }

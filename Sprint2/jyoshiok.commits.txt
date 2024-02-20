@@ -1,0 +1,302 @@
+FinDining/frontend/components/CampusMap/index.tsx
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  1) import React, { useCallback, useEffect, useRef, useState } from "react"
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  2) import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400  4) import campusMapImg from "../../public/campus_map.png"
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  6) import ZoomBtns from '../ZoomBtns'
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  9)   const css = { width: '100%', height: '100vh' }
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 10)   const test = {width: '100%'}
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 11) 
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 13)     <TransformWrapper
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 14)         initialScale={2.5}
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 15)         centerOnInit={true} // Note: Adding initialPositionX and initialPositionY can cause issues with smaller screens if values are too large.
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 16)     >
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 17)     {({ zoomIn, zoomOut, resetTransform, centerView, ...rest }) => (
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 18)         <React.Fragment>
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 19)             <ZoomBtns ZoomInFn={zoomIn} ZoomOutFn={zoomOut} ZoomResetFn={() => {centerView()}} /> {/* resetTransform(), issue when using centerOnInit={true} */}
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 20)             <TransformComponent
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 21)                 wrapperStyle={css}
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 22)             >
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 23)                 <img style={test} src="campus_map.png" alt="test" />
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 24)             </TransformComponent>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 25)         </React.Fragment>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 26)     )}
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 27)     </TransformWrapper>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 28)   );
+
+
+FinDining/frontend/components/CampusMap/old.tsx
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  1) import React, { useCallback, useEffect, useRef, useState } from "react"
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400  2) import styles from "./campusmap.module.scss"
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400  3) import campusMapImg from "../../public/campus_map.png"
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400  4) import Image from 'next/future/image'
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400  5) 
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  6) let tranOrigin = "0px 0px";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  7) let tran = "";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  8) let x = [];
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  9) let y = [];
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 10) let scale = [];
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 11) let origin = {x: 0, y: 0};
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 12) let newOrigin = {x: 0, y: 0};
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 13) let original = "";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 14) let accumlatedFactor = 0;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 15) 
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 16) const CampusMap: React.FC = () => {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 17)   // const [origin, setOrigin] = useState({x: 0, y: 0});
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 18)   const [myZoom, setZoom] = useState(1);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 19)   const [myOrigin, setOrigin] = useState("");
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 20) 
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 21)   const [dim, setDim] = useState({width: 0, height: 0});
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 22)   
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 23)   const [domNode, setDomNode] = useState(null);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 24)   const onRefChange = useCallback(node => {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 25)     setDomNode(node);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 26)   }, []);
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 27)   const ref = useRef(null);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 28)   const ref2 = useRef(null);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 29)   const [update, setUpdate] = useState(0);
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 30) 
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 31)   // Todo: Make this interactive and les`s pixelated on zoom.
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 32)   //   May have to pivot to another map concept.
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 33)   const css = { width: '100%', height: '100vh', backgroundColor: 'red', position: 'relative', top: 0, left: 0, overflow: 'auto' } // 100% 100vh
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 34)   const imageStyle = { position: 'absolute', top: 0, left: 0, transformOrigin: tranOrigin, transform: tran }
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 35)   const myBtn = { position: 'fixed', top: 50, left: 50 }
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 36)   const myBtn2 = { position: 'fixed', top: 100, left: 50 }
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 37)   const test = { width: 5, height: 5, position: 'absolute', top: origin.y, left: origin.x, backgroundColor: 'red' }
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 38) 
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 39)   const compileOrigin = (): string => {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 40)     let transform = "";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 41)     console.log(y);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 42)     for (let i = 0; i < x.length; i++) {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 43)         transform += "translate(" + (x[i] - newOrigin.x) + "px, " + (y[i] - newOrigin.y) + "px) scale(" + scale[i] + ") translate(" + (newOrigin.x - x[i]) + "px, " + (newOrigin.y - y[i]) + "px) ";
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 44)     }
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 45)     return transform;
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 46)   }
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 47) 
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 48)   const zoom = (factor: number) => {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 49)     newOrigin.x = (ref.current.clientWidth)/2 + (ref.current.scrollLeft); // imageStyle, left
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 50)     newOrigin.y = (ref.current.clientHeight)/2 + (ref.current.scrollTop); // imageStyle, top
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 51)     if (origin.x - newOrigin.x != 0 || origin.y - newOrigin.y != 0) {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 52)       x.push(origin.x);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 53)       y.push(origin.y);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 54)       scale.push(1 + accumlatedFactor);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 55)       tran = compileOrigin();
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 56)       original = tran;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 57)       accumlatedFactor = 0;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 58)     }
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 59)     origin.x = newOrigin.x;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 60)     origin.y = newOrigin.y;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 61)     accumlatedFactor += factor;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 62)     tran = original + "scale(" + (1 + accumlatedFactor) + ")";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 63)     tranOrigin = origin.x + "px " + origin.y + "px";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 64)     setUpdate((prevState) => prevState += 1);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 65)     console.log(tran);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 66)   }
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 67) 
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 68)   return (
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 69)     <div style={css} ref={ref}>
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 70)       <Image
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 71)         src={campusMapImg}
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 72)         style={imageStyle}
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 73)         alt="Map of campus image"
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 74)       />
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 75)       <button style={myBtn} onClick={() => {zoom(0.05)}}>ZOOM IN</button>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 76)       <button style={myBtn2} onClick={() => {zoom(-0.05)}}>ZOOM OUT</button>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 77)       <div style={test}></div>
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 78)     </div>
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 79)   )
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 80) };
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 81) 
+bf84c950 (jovanyoshioka  2022-10-23 20:50:30 -0400 82) export default CampusMap;
+
+FinDining/frontend/components/CampusMap/transformDemo.html
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  1) <html>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  2)   <head>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  3)     <title>Fin' Dining [TESTING]</title>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  4)   </head>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  5)   <style>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  6)     div {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  7)       width: 50px;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  8)       height: 50px;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400  9)       margin: 25% auto;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 10)       background-color: red;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 11)       transform: scale(2.0);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 12)       transform-origin: 0px 0px;
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 13)     }
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 14)   </style>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 15)   <body>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 16)     <div></div>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 17)     <script>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 18)       function myFunction() {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 19)         document.querySelector("div").style.transform = "translate(-25px, -25px) scale(2.0) translate(25px, 25px) scale(2.0)";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 20)         document.querySelector("div").style.transformOrigin = "25px 25px";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 21)       }
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 22)       function myFunction2() {
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 23)         document.querySelector("div").style.transform = "translate(-50px, -50px) scale(2.0) translate(50px, 50px) translate(-25px, -25px) scale(2.0) translate(25px, 25px) scale(2.0)";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 24)         document.querySelector("div").style.transformOrigin = "45px 45px";
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 25)       }
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 26)       setTimeout(myFunction, 1000);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 27)       setTimeout(myFunction2, 2000);
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 28)     </script>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 29)   </body>
+a4a826be (Jovan Yoshioka 2022-10-25 04:38:02 -0400 30) </html>
+
+FinDining/frontend/components/FiltersElements/index.tsx
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  1) import React from "react"
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  2) import styles from "./filterselements.module.scss"
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  3) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  4) const FiltersElements: React.FC = () => {
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  5)   // // OPTION: Select meal type (breakfast, lunch, or dinner) based on current time.
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  6)   // const d = new Date();
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  7)   // const hour: number = d.getHours();
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  8)   // const minutes: number = d.getMinutes();
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  9)   // let meal: string = "";
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 10)   // if (hour <= 10 && minutes < 30) meal = "breakfast";
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 11)   // else if (hour <= 16 && minutes < 30) meal = "lunch";
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 12)   // else meal = "dinner";
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 13) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 14)   return (
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 15)     <>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 16)       <label className={styles.filter}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 17)         <span>Dietary Restrictions</span>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 18)         <select multiple={true}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 19)           <option value="restrict1">Restriction 1</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 20)           <option value="restrict2">Restriction 2</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 21)           <option value="restrict3">Restriction 3</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 22)           <option value="restrict4">Restriction 4</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 23)         </select>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 24)       </label>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 25) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 26)       <br /><br />
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 27) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 28)       <label className={styles.filter}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 29)         <span>Meal</span>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 30)         <select> {/* value={meal} */}
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 31)           <option value="na">No Filter</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 32)           <option value="breakfast">Breakfast</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 33)           <option value="lunch">Lunch</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 34)           <option value="dinner">Dinner</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 35)         </select>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 36)       </label>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 37) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 38)       <br /><br />
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 39) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 40)       <label className={styles.filter}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 41)         <span>Method of Payment</span>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 42)         <select multiple={true}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 43)           <option value="ms">Meal Swipe</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 44)           <option value="dd">Dining Dollars</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 45)           <option value="fl">Flex</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 46)           <option value="vc">VolCard</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 47)           <option value="dc">Debit/Credit</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 48)           <option value="ca">Cash</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 49)         </select>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 50)       </label>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 51) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 52)       <br /><br />
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 53)       
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 54)       <label className={styles.filter}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 55)         <span>Location</span>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 56)         <select multiple={true}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 57)           <option value="central">Central</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 58)           <option value="north">North</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 59)           <option value="west">West</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 60)           <option value="south">South</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 61)           <option value="east">East</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 62)         </select>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 63)       </label>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 64) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 65)       <br /><br />
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 66) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 67)       <label className={styles.filter}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 68)         <span>Hours</span>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 69)         <select multiple={true}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 70)           <option value="three">Opening Soon</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 71)           <option value="one">Currently Open</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 72)           <option value="three">Closing Soon</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 73)           <option value="two">Currently Closed</option> 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 74)         </select>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 75)       </label>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 76) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 77)       <br /><br />
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 78) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 79)       <label className={styles.filter}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 80)         <span>Price</span>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 81)         <select multiple={true}>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 82)           <option value="one">$</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 83)           <option value="two">$$</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 84)           <option value="three">$$$</option>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 85)         </select>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 86)       </label>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 87)     </>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 88)   );
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 89) };
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 90) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 91) export default FiltersElements;
+
+FinDining/frontend/components/FiltersElements/filterselements.module.scss
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  1) .filter {
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  2)     span {
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  3)         font-size: 1.25em;
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  4)         display: block;
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  5)     }
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  6)     select {
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  7)         width: 175px;
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  8)         background-color: rgb(238, 237, 234);
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  9)         font-family: "Bitter", sans-serif;
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 10)         font-size: 1em;
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 11) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 12)         option:nth-child(odd) {
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 13)             background-color: rgb(212, 212, 212);
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 14)         }
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 15)     }
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 16) }
+
+FinDining/frontend/components/ZoomBtns/ZoomBtn.module.scss
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  1) /*Zoom Buttons*/
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  2) .btn {
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  3)     position: absolute;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  4)     top: 0;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  5)     right: 0;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  6)     z-index: 1; // Make buttons appear in front of map.
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  7) }
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  8) 
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  9) .ZoomIn, .ZoomOut, .ZoomReset {
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 10)     display: block;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 11)     border: none;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 12) }
+
+FinDining/frontend/components/ZoomBtns/index.tsx
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  3) interface Props {
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  4)     ZoomInFn: (step: number) => void;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  5)     ZoomOutFn: (step: number) => void;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  6)     ZoomResetFn: () => void;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  7) }
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  8) 
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400  9) const ZoomBtn: React.FC<Props> = ({ ZoomInFn, ZoomOutFn, ZoomResetFn }) =>{
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 10)     const STEP: number = 0.5;
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 11) 
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 12)     return (
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 13)         <div className={styles.btn}>
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 14)             <button onClick={() => ZoomInFn(STEP)} className={styles.ZoomIn}></button>
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 15)             <button onClick={() => ZoomOutFn(STEP)} className={styles.ZoomOut}></button>
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 16)             <button onClick={ZoomResetFn} className={styles.ZoomReset}></button>
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 17)         </div>
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 18)     )
+6a0b5fcf (Jovan Yoshioka 2022-10-25 05:25:55 -0400 19) };
+
+FinDining/frontend/pages/filters/index.tsx
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  1) import { NextPage } from "next";
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  2) import FiltersElements from "../../components/FiltersElements";
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  3) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  4) const Filters: NextPage = () => {
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  5)   return (
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  6)     <>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  7)       <div>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  8)         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter" />
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400  9)       </div>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 10)       <FiltersElements />
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 11)     </>
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 12)   );
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 13) }
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 14) 
+fbd80682 (Jovan Yoshioka 2022-10-25 06:12:03 -0400 15) export default Filters;
